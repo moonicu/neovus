@@ -144,9 +144,41 @@ def build_report(variant: str, gene: str | None = None,
             if af.claim:
                 structural.claims.append(af.claim)
             report.structural = structural
+            if dom and residue:
+                report.headline.structure = f"residue {residue} · {_short_domain(dom)}"
+            elif residue:
+                report.headline.structure = f"residue {residue} · outside annotated domains"
+
+    # Scannable header facts
+    report.headline.clinvar_significance = ann.clinvar_significance
+    report.headline.direction = direction.call
+    report.headline.revel = ann.revel
+    report.headline.alphamissense = ann.alphamissense
+    report.headline.alphamissense_pred = ann.alphamissense_pred
+    report.headline.cadd = ann.cadd_phred
+    report.headline.gnomad_af = ann.gnomad_af
+    if top_disease is not None:
+        report.headline.top_condition = top_disease.name
+        report.headline.top_condition_match = top_disease.match_score
 
     report.summary = _summarize(ann, report, top_disease)
     return report
+
+
+def _short_domain(dom: dict) -> str:
+    """Human-friendly domain label, e.g. 'voltage-sensor Segment S4'."""
+    desc = dom.get("description") or dom.get("type") or "domain"
+    # UniProt descriptions look like "Helical; Voltage-sensor; Name=Segment S4".
+    name = None
+    for part in desc.split(";"):
+        part = part.strip()
+        if part.startswith("Name="):
+            name = part[5:].strip()
+    parts = [p.strip() for p in desc.split(";") if p.strip() and not p.strip().startswith("Name=")]
+    label = name or (parts[0] if parts else desc)
+    if name and any("voltage-sensor" in p.lower() for p in parts):
+        label = f"voltage-sensor {name}"
+    return label
 
 
 def _checklist_from_disease(disease) -> list[ChecklistItem]:

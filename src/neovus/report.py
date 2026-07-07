@@ -42,8 +42,25 @@ class StructuralImpact:
 
 
 @dataclass
+class Headline:
+    """Structured key facts for a scannable header (the UI renders these as
+    badges + metrics instead of one long sentence)."""
+    clinvar_significance: str | None = None
+    direction: str | None = None            # pathogenic | benign | uncertain
+    revel: float | None = None
+    alphamissense: float | None = None
+    alphamissense_pred: str | None = None
+    cadd: float | None = None
+    gnomad_af: float | None = None
+    top_condition: str | None = None
+    top_condition_match: float | None = None
+    structure: str | None = None            # short residue/domain phrase
+
+
+@dataclass
 class Report:
     variant: VariantInput
+    headline: Headline = field(default_factory=Headline)
     variant_evidence: list[Claim] = field(default_factory=list)
     candidate_diseases: list[CandidateDisease] = field(default_factory=list)
     checklist: list[ChecklistItem] = field(default_factory=list)

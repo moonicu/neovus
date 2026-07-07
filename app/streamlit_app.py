@@ -29,15 +29,63 @@ def _claims_md(claims) -> str:
     return "\n".join(lines)
 
 
+def _sig_color(sig: str | None) -> str:
+    s = (sig or "").lower()
+    if "pathogenic" in s and "benign" not in s:
+        return "red"
+    if "benign" in s:
+        return "green"
+    if "conflict" in s or "uncertain" in s:
+        return "orange"
+    return "gray"
+
+
+def _dir_color(d: str | None) -> str:
+    return {"pathogenic": "red", "benign": "green"}.get(d or "", "gray")
+
+
 def render(report: Report) -> None:
     v = report.variant
+    h = report.headline
     st.subheader(f"{v.gene}  ·  {v.hgvs or v.genomic}")
+    st.caption(f"{v.genomic} · GRCh38" + (f"  ·  HPO: {', '.join(v.hpo_terms)}" if v.hpo_terms else ""))
+
     for w in report.warnings:
         st.warning(w)
 
-    st.markdown(f"**Summary.** {report.summary or '_(none)_'}")
+    # Classification banner
+    banner = []
+    if h.clinvar_significance:
+        banner.append(f"**ClinVar:** :{_sig_color(h.clinvar_significance)}[{h.clinvar_significance}]")
+    if h.direction:
+        banner.append(f"**Evidence leans:** :{_dir_color(h.direction)}[{h.direction}]")
+    if banner:
+        st.markdown("　·　".join(banner))
+
+    # In-silico metrics row
+    cols = st.columns(4)
+    cols[0].metric("REVEL", f"{h.revel:.2f}" if h.revel is not None else "—",
+                   help="Missense pathogenicity, >0.5 supports pathogenic")
+    cols[1].metric("AlphaMissense",
+                   f"{h.alphamissense:.2f}" + (f" ({h.alphamissense_pred})" if h.alphamissense_pred else "")
+                   if h.alphamissense is not None else "—")
+    cols[2].metric("CADD", f"{h.cadd:.0f}" if h.cadd is not None else "—",
+                   help="Deleteriousness (phred); higher = worse")
+    cols[3].metric("gnomAD AF", f"{h.gnomad_af:.1e}" if h.gnomad_af is not None else "—",
+                   help="Population allele frequency")
+
+    if h.top_condition:
+        match = f"  ·  phenotype match **{h.top_condition_match:.0%}**" if h.top_condition_match else ""
+        st.markdown(f"**Top condition:** {h.top_condition}{match}")
+    if h.structure:
+        st.markdown(f"**Structure:** {h.structure}")
+
     st.caption("⚕️ Decision support on open public data — not a diagnosis. "
                "Verify every claim against its linked source before clinical use.")
+
+    if report.summary:
+        with st.expander("Plain-language summary"):
+            st.write(report.summary)
 
     c1, c2 = st.columns(2)
     with c1:
