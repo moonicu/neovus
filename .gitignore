@@ -1,0 +1,36 @@
+# Patient / institutional data — NEVER commit (open public data only)
+patient_*.json
+patient_*.csv
+variants_*.csv
+*_phi.*
+data/private/
+data/patient/
+*.vcf
+*.vcf.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.python-version
+
+# Caches / generated
+.cache/
+data/cache/
+reports/
+*.log
+
+# Secrets
+.env
+.env.*
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
