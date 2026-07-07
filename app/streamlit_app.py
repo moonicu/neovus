@@ -80,15 +80,18 @@ st.caption("Transparent, evidence-traceable interpretation of a single neonatal 
 with st.sidebar:
     st.header("Enter a VUS")
     gene = st.text_input("Gene", value="KCNQ2")
-    variant = st.text_input("Variant (genomic GRCh38)", value="chr20:g.63446815G>A",
-                            help="MyVariant format, e.g. chr20:g.63446815G>A")
-    hpo = st.text_input("HPO terms (optional, comma-separated)",
+    variant = st.text_input("Variant (as written on the report)", value="c.629G>A",
+                            help="rsID, cDNA (c.), protein (p.), or genomic — "
+                                 "e.g. c.629G>A, p.Arg210His, rs796053235, chr20:g.63444720C>T")
+    hpo = st.text_input("HPO phenotype terms (optional, comma-separated)",
                         placeholder="HP:0001250, HP:0010851",
-                        help="Supplying phenotypes re-ranks candidate diseases by match.")
+                        help="Supplying the baby's phenotypes re-ranks candidate diseases by match.")
     go = st.button("Interpret", type="primary", use_container_width=True)
     st.markdown("---")
-    st.caption("Examples")
-    st.code("KCNQ2  chr20:g.63446815G>A\nKCNQ2  chr20:g.63413556G>A", language=None)
+    st.caption("Examples (gene · variant)")
+    st.code("KCNQ2   c.629G>A        (p.Arg210His)\n"
+            "KCNQ2   p.Arg201Cys\n"
+            "SCN2A   c.2558G>A", language=None)
 
 if go:
     if not variant.strip():
