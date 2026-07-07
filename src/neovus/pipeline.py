@@ -17,6 +17,7 @@ from .report import (CandidateDisease, ChecklistItem, Report, StructuralImpact,
                      VariantInput)
 from .scoring import evidence_direction
 from .sources import alphafold, hpo, myvariant, uniprot
+from .sources.resolve import resolve
 
 _TOP_DISEASES = 5
 _TOP_PHENOTYPES = 12
@@ -36,18 +37,35 @@ def _residue(protein_change: str | None) -> int | None:
     return int(m.group(1)) if m else None
 
 
-def build_report(variant_id: str, gene: str | None = None,
+def build_report(variant: str, gene: str | None = None,
                  hpo_terms: list[str] | None = None) -> Report:
-    ann = myvariant.annotate_variant(variant_id)
-    gene = gene or (ann.gene if ann else None)
-
+    # Accept what's on the report (rsID / c.HGVS / p.HGVS / genomic) → MyVariant id.
+    res = resolve(variant, gene)
     report = Report(variant=VariantInput(
-        gene=gene or "?", genomic=variant_id, hpo_terms=hpo_terms or []))
-    if ann is None:
-        report.warnings.append(f"Variant '{variant_id}' not found in MyVariant.info.")
+        gene=gene or "?", genomic=res.variant_id or variant, hpo_terms=hpo_terms or []))
+    if res.variant_id is None:
+        report.warnings.append(res.note or f"Could not resolve variant '{variant}'.")
         return report
-    report.variant.hgvs = ann.protein_change
-    report.variant_evidence = list(ann.claims)
+
+    ann = myvariant.annotate_variant(res.variant_id)
+    gene = gene or (ann.gene if ann else None)
+    report.variant.gene = gene or "?"
+    if ann is None:
+        report.warnings.append(
+            f"'{variant}' resolved to {res.variant_id} but is not in MyVariant.info.")
+        return report
+    # Prefer the canonical (RefSeq NP_) protein change from the recoder over the
+    # first dbNSFP isoform, so display and residue→domain mapping use one numbering.
+    protein_change = res.protein or ann.protein_change
+    report.variant.hgvs = protein_change
+
+    # Record the input normalization as its own auditable step.
+    if res.method != "genomic" and res.note:
+        report.variant_evidence.append(Claim(res.note).add(Evidence(
+            "Ensembl Variant Recoder", res.source_notation,
+            "https://rest.ensembl.org/variant_recoder", "input normalization (GRCh38)",
+            retrieved="rest:ensembl")))
+    report.variant_evidence += list(ann.claims)
 
     # Auditable direction: what the in-silico predictors collectively point to.
     direction = evidence_direction(ann)
@@ -83,7 +101,7 @@ def build_report(variant_id: str, gene: str | None = None,
             prot = None
             report.warnings.append(f"UniProt lookup failed for {gene}: {e}")
         if prot:
-            residue = _residue(ann.protein_change)
+            residue = _residue(protein_change)
             dom = uniprot.domain_at_residue(prot, residue)
             af = alphafold.lookup(prot.accession)
             if dom:
@@ -121,7 +139,7 @@ def _checklist_from_disease(disease) -> list[ChecklistItem]:
 
 
 def _summarize(ann, report: Report, top_disease) -> str:
-    bits = [f"{report.variant.gene} {ann.protein_change or ann.variant_id}:"]
+    bits = [f"{report.variant.gene} {report.variant.hgvs or ann.variant_id}:"]
     if ann.clinvar_significance:
         bits.append(f"ClinVar reports this as {ann.clinvar_significance}.")
     scores = []
