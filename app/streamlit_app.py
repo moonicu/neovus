@@ -55,9 +55,15 @@ def render(report: Report) -> None:
     with c2:
         st.markdown("### ✅ Neonatal checklist")
         if report.checklist:
-            st.caption("Phenotypes of the top-ranked condition, by HPO frequency.")
-            for item in report.checklist:
-                st.markdown(_claims_md(item.claims))
+            labels = {"symptom": "Symptoms / signs (HPO, by frequency)",
+                      "workup": "Work-up", "follow-up": "Follow-up"}
+            for cat in ("symptom", "workup", "follow-up"):
+                items = [i for i in report.checklist if i.category == cat]
+                if not items:
+                    continue
+                st.markdown(f"**{labels[cat]}**")
+                for item in items:
+                    st.markdown(_claims_md(item.claims))
         else:
             st.markdown("_none_")
 

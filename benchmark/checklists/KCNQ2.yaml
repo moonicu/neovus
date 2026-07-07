@@ -1,0 +1,40 @@
+gene: KCNQ2
+disease: KCNQ2-related disorders (self-limited neonatal epilepsy ↔ developmental & epileptic encephalopathy)
+review_status: "draft — clinician review required (open-source curation, cite before use)"
+items:
+  - category: workup
+    text: "EEG (interictal and, where possible, ictal) to characterise the neonatal seizure syndrome and look for burst-suppression"
+    rationale: "EEG pattern distinguishes self-limited neonatal epilepsy from the severe DEE end of the spectrum"
+    source: "GeneReviews: KCNQ2-Related Disorders"
+    source_id: "NBK32534"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK32534/"
+  - category: workup
+    text: "Brain MRI to exclude structural or acquired (e.g. hypoxic-ischaemic) causes of neonatal seizures"
+    rationale: "KCNQ2 is a channelopathy; imaging is typically normal, so MRI helps rule out mimics"
+    source: "GeneReviews: KCNQ2-Related Disorders"
+    source_id: "NBK32534"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK32534/"
+  - category: workup
+    text: "Confirmatory genetic testing with parental segregation (de novo vs inherited) to inform recurrence risk"
+    rationale: "De novo variants usually indicate DEE; inherited variants often self-limited familial neonatal epilepsy"
+    source: "GeneReviews: KCNQ2-Related Disorders"
+    source_id: "NBK32534"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK32534/"
+  - category: follow-up
+    text: "Consider a sodium-channel-blocker antiseizure medication (e.g. carbamazepine / oxcarbazepine), which is frequently effective in KCNQ2-related seizures"
+    rationale: "Genotype-tailored ASM: sodium-channel blockers are often first-line for KCNQ2 gain/loss-of-function seizures"
+    source: "Systematic review, KCNQ2-related epilepsy tailored ASM (PubMed)"
+    source_id: "PMID:36948217"
+    url: "https://pubmed.ncbi.nlm.nih.gov/36948217/"
+  - category: follow-up
+    text: "Neurodevelopmental surveillance, even if neonatal seizures remit (developmental & epileptic encephalopathy can emerge)"
+    rationale: "Developmental outcome varies across the KCNQ2 spectrum; ongoing follow-up guides early intervention"
+    source: "GeneReviews: KCNQ2-Related Disorders"
+    source_id: "NBK32534"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK32534/"
+  - category: follow-up
+    text: "Genetic counselling and recurrence-risk discussion with the family"
+    rationale: "Recurrence risk depends on de novo vs inherited status established at confirmatory testing"
+    source: "GeneReviews: KCNQ2-Related Disorders"
+    source_id: "NBK32534"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK32534/"

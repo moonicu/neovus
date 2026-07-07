@@ -39,12 +39,19 @@ def render(report: Report) -> str:
                 L.append(f"         ↳ {ev.cite()}")
 
     if report.checklist:
-        L.append("\n▶ NEONATAL CHECKLIST (phenotypes, by frequency)")
-        for item in report.checklist:
-            L.append(f"     • [{item.category}] {item.text}")
-            for c in item.claims:
-                for ev in c.evidence:
-                    L.append(f"         ↳ {ev.cite()}")
+        L.append("\n▶ NEONATAL CHECKLIST")
+        labels = {"symptom": "Symptoms/signs (HPO, by frequency)",
+                  "workup": "Work-up", "follow-up": "Follow-up"}
+        for cat in ("symptom", "workup", "follow-up"):
+            items = [i for i in report.checklist if i.category == cat]
+            if not items:
+                continue
+            L.append(f"   — {labels.get(cat, cat)} —")
+            for item in items:
+                L.append(f"     • {item.text}")
+                for c in item.claims:
+                    for ev in c.evidence:
+                        L.append(f"         ↳ {ev.cite()}")
 
     if report.structural:
         L.append("\n▶ PROTEIN-STRUCTURAL CONTEXT")

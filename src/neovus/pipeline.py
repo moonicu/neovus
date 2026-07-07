@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import re
 
+from .checklists import load_gene_checklist
 from .evidence import Claim, Evidence
 from .report import (CandidateDisease, ChecklistItem, Report, StructuralImpact,
                      VariantInput)
@@ -114,6 +115,9 @@ def build_report(variant: str, gene: str | None = None,
                 "check the gene symbol (HGNC).")
     if top_disease is not None:
         report.checklist = _checklist_from_disease(top_disease)
+    # Curated work-up / follow-up actions for the gene (symptoms come from HPO above).
+    if gene:
+        report.checklist += load_gene_checklist(gene)
 
     # Structural context
     if gene:
