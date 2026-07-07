@@ -7,7 +7,7 @@ from typing import Any
 
 import requests
 
-USER_AGENT = "neovus-kg/0.1 (Built with Claude hackathon; open-data VUS interpretation)"
+USER_AGENT = "neovus/0.1 (Built with Claude hackathon; open-data VUS interpretation)"
 _session = requests.Session()
 # Accept JSON explicitly — Ensembl REST returns non-JSON without it.
 _session.headers.update({"User-Agent": USER_AGENT, "Accept": "application/json"})

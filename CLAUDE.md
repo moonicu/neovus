@@ -1,4 +1,4 @@
-# NeoVUS-KG — Claude Code Entry Guide (Hackathon Build)
+# NeoVUS — Claude Code Entry Guide (Hackathon Build)
 
 > This file orients Claude Code for the **Built with Claude: Life Sciences** hackathon (Jul 7–13).
 > Track: **Builder**. Goal: working software that outlasts the week, plus an open-data validation.

@@ -1,5 +1,5 @@
 [project]
-name = "neovus-kg"
+name = "neovus"
 version = "0.1.0"
 description = "Transparent, evidence-traceable interpretation of a single neonatal VUS"
 readme = "README.md"

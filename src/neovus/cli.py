@@ -13,7 +13,7 @@ from .report import Report
 
 def render(report: Report) -> str:
     v = report.variant
-    L = ["=" * 72, f"NeoVUS-KG report — {v.gene}  {v.hgvs or v.genomic}", "=" * 72]
+    L = ["=" * 72, f"NeoVUS report — {v.gene}  {v.hgvs or v.genomic}", "=" * 72]
 
     if report.warnings:
         L.append("\n⚠  WARNINGS")
@@ -68,7 +68,7 @@ def render(report: Report) -> str:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="NeoVUS-KG terminal report")
+    ap = argparse.ArgumentParser(description="NeoVUS terminal report")
     ap.add_argument("variant", help="MyVariant id, e.g. chr20:g.63446815G>A")
     ap.add_argument("--gene", help="Gene symbol (inferred if omitted)")
     ap.add_argument("--hpo", default="", help="Comma-separated HPO terms")

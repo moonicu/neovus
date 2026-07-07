@@ -19,7 +19,7 @@ import sys
 import requests
 
 BASE = "https://myvariant.info/v1/query"
-UA = {"User-Agent": "neovus-kg/0.1 benchmark-builder"}
+UA = {"User-Agent": "neovus/0.1 benchmark-builder"}
 
 # Neonatal / early-infantile disease genes for the benchmark.
 GENES = ["KCNQ2", "SCN2A", "KCNQ3", "CFTR", "GAA", "ACADM", "ARX", "CDKL5",

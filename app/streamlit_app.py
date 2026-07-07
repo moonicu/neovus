@@ -1,4 +1,4 @@
-"""NeoVUS-KG — Streamlit point-of-care UI.
+"""NeoVUS — Streamlit point-of-care UI.
 
 Enter one VUS → a ranked, evidence-trailed interpretation where every claim links
 back to its source database (auditability is the whole point).
@@ -13,7 +13,7 @@ import streamlit as st
 from neovus.pipeline import build_report
 from neovus.report import Report
 
-st.set_page_config(page_title="NeoVUS-KG", page_icon="🧬", layout="wide")
+st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide")
 
 
 def _claims_md(claims) -> str:
@@ -133,7 +133,7 @@ def render(report: Report) -> None:
                        data=report_html(report), file_name=fname, mime="text/html")
 
 
-st.title("🧬 NeoVUS-KG")
+st.title("🧬 NeoVUS")
 st.caption("Transparent, evidence-traceable interpretation of a single neonatal VUS.")
 
 with st.sidebar:

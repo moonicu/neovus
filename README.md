@@ -1,4 +1,4 @@
-# NeoVUS-KG
+# NeoVUS
 
 **Transparent, evidence-traceable interpretation of a single neonatal VUS (variant of uncertain significance).**
 
@@ -13,7 +13,7 @@ database** so the clinician can verify rather than trust a black box.
 ## Why
 
 A neonatologist in the NICU who hits a VUS has no neonatal-specific, point-of-care tool to interpret
-it — whole-exome ranking tools (Exomiser, AMELIE) solve a different problem. NeoVUS-KG interprets ONE
+it — whole-exome ranking tools (Exomiser, AMELIE) solve a different problem. NeoVUS interprets ONE
 already-flagged variant, with auditability as a first-class feature.
 
 ## What it does
