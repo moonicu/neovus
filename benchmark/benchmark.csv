@@ -1,0 +1,145 @@
+gene,variant_genomic_grch38,clinvar_variation_id,variant_protein,disease,clinvar_current_significance,direction
+KCNQ2,chr20:g.63424195del,280043,,"Seizures, benign familial neonatal, 1",Pathogenic,pathogenic
+KCNQ2,chr20:g.63439657C>T,369768,p.G290S,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Pathogenic,pathogenic
+KCNQ2,chr20:g.63413472G>A,21768,p.Arg437Ter,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Pathogenic,pathogenic
+KCNQ2,chr20:g.63413556G>A,205913,p.Arg525Trp,"Seizures, benign familial neonatal, 1",Pathogenic,pathogenic
+KCNQ2,chr20:g.63433862G>A,205833,,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+KCNQ2,chr20:g.63407028C>T,129341,,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+KCNQ2,chr20:g.63439637G>A,138017,p.Leu131Phe,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+KCNQ2,chr20:g.63407157C>T,138030,,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+SCN2A,chr2:g.165389451G>A,196039,p.R1750Q,"Developmental and epileptic encephalopathy, 11 (DEE11)",Pathogenic,pathogenic
+SCN2A,chr2:g.165310413C>T,29888,p.Ala131Val,"Episodic ataxia, type 9",Pathogenic,pathogenic
+SCN2A,chr2:g.165310448C>T,207041,p.Arg275*,"Seizures, benign familial infantile, 3 (BFIS3)",Pathogenic,pathogenic
+SCN2A,chr2:g.165373331G>T,379254,p.R1319L,"Developmental and epileptic encephalopathy, 11 (DEE11)",Pathogenic,pathogenic
+SCN2A,chr2:g.165323269T>C,130217,,"Seizures, benign familial infantile, 3 (BFIS3)",Benign,benign
+SCN2A,chr2:g.165388795C>T,331736,,"Seizures, benign familial infantile, 3 (BFIS3)",Benign,benign
+SCN2A,chr2:g.165389725C>T,130226,,"Seizures, benign familial infantile, 3 (BFIS3)",Benign,benign
+SCN2A,chr2:g.165295879G>A,130224,p.R19K,"Seizures, benign familial infantile, 3 (BFIS3)",Benign,benign
+KCNQ3,chr8:g.132180245C>T,424397,p.Arg109His,Inborn genetic diseases,Pathogenic,pathogenic
+KCNQ3,chr8:g.132180246G>A,205963,p.R230C,"Seizures, benign familial neonatal, 2",Pathogenic,pathogenic
+KCNQ3,chr8:g.132175493del,2009234,,Benign neonatal seizures,Pathogenic,pathogenic
+KCNQ3,chr8:g.132141171del,1451762,,Benign neonatal seizures,Pathogenic,pathogenic
+KCNQ3,chr8:g.132128836G>C,361869,,Benign Neonatal Epilepsy,Benign,benign
+KCNQ3,chr8:g.132121114C>T,361745,,"Seizures, benign familial neonatal, 2",Benign,benign
+KCNQ3,chr8:g.132122041G>A,361757,,"Seizures, benign familial neonatal, 2",Benign,benign
+KCNQ3,chr8:g.132122922C>T,361776,,Benign Neonatal Epilepsy,Benign,benign
+CFTR,chr7:g.117611707G>A,7194,p.W1089X,Cystic fibrosis (CF),Pathogenic,pathogenic
+CFTR,chr7:g.117534368A>G,54010,,Cystic fibrosis (CF),Pathogenic,pathogenic
+CFTR,chr7:g.117559463G>A,53242,,Cystic fibrosis (CF),Pathogenic,pathogenic
+CFTR,chr7:g.117480137_117480138dup,53944,,Cystic fibrosis (CF),Pathogenic,pathogenic
+CFTR,chr7:g.117591798T>C,1177029,,Cystic fibrosis (CF),Likely benign,benign
+CFTR,chr7:g.117535451A>G,256256,,Cystic fibrosis (CF),Benign,benign
+CFTR,chr7:g.117536684C>T,93159,,Cystic fibrosis (CF),Benign,benign
+CFTR,chr7:g.117559479G>G,132146,,Hereditary pancreatitis (PCTT),Benign,benign
+GAA,chr17:g.80112922C>A,4029,p.Asp645Glu,"Glycogen storage disease type II, infantile",Pathogenic,pathogenic
+GAA,chr17:g.80117016G>C,265160,p.W746C,"Glycogen storage disease, type II (GSD2)",Pathogenic,pathogenic
+GAA,chr17:g.80104542T>G,4027,,"GLYCOGEN STORAGE DISEASE II, ADULT FORM",Pathogenic,pathogenic
+GAA,chr17:g.80112003C>T,982109,p.Q553X,"Glycogen storage disease, type II (GSD2)",Pathogenic,pathogenic
+GAA,chr17:g.80097253T>C,178711,,"Glycogen storage disease, type II (GSD2)",Benign,benign
+GAA,chr17:g.80099924T>C,325752,,"Glycogen storage disease, type II (GSD2)",Benign,benign
+GAA,chr17:g.80111068G>T,255355,,"Glycogen storage disease, type II (GSD2)",Benign,benign
+GAA,chr17:g.80117129G>A,92474,,"Glycogen storage disease, type II (GSD2)",Benign,benign
+ACADM,chr1:g.75761120A>C,265452,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Pathogenic,pathogenic
+ACADM,chr1:g.75734849_75734852del,189036,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Pathogenic,pathogenic
+ACADM,chr1:g.75761160del,226096,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Pathogenic/Likely pathogenic,pathogenic
+ACADM,chr1:g.75732869T>C,92261,p.Ile82Thr,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Pathogenic,pathogenic
+ACADM,chr1:g.75733660C>G,254689,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Benign,benign
+ACADM,chr1:g.75728328T>C,226074,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Benign,benign
+ACADM,chr1:g.75763641T>C,298081,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Benign,benign
+ACADM,chr1:g.75732624T>C,92256,,Medium-chain acyl-coenzyme A dehydrogenase deficiency (ACADMD),Benign,benign
+ARX,chrX:g.25013205del,287023,,X-linked lissencephaly with abnormal genitalia,Pathogenic,pathogenic
+ARX,chrX:g.25012937G>A,11188,p.P353L,"Developmental and epileptic encephalopathy, 1 (DEE1)",Pathogenic,pathogenic
+ARX,chrX:g.25010268G>A,157739,p.R371X,"Developmental and epileptic encephalopathy, 1 (DEE1)",Pathogenic,pathogenic
+ARX,chrX:g.25010262G>A,11193,p.Gln373*,X-linked lissencephaly with abnormal genitalia,Pathogenic,pathogenic
+ARX,chrX:g.25013363G>C,2044313,p.Pro211Arg,"Developmental and epileptic encephalopathy, 1 (DEE1)",Benign,benign
+ARX,chrX:g.25013155A>G,1544361,,"Developmental and epileptic encephalopathy, 1 (DEE1)",Likely benign,benign
+ARX,chrX:g.25004754C>G,624394,,"Developmental and epileptic encephalopathy, 1 (DEE1)",Likely benign,benign
+ARX,chrX:g.25004826T>C,511201,,"Developmental and epileptic encephalopathy, 1 (DEE1)",Likely benign,benign
+CDKL5,chrX:g.18575383C>T,143783,p.R59X,"Developmental and epileptic encephalopathy, 2 (DEE2)",Pathogenic,pathogenic
+CDKL5,chrX:g.18584331C>T,143823,p.Arg178Trp,Atypical Rett syndrome,Pathogenic,pathogenic
+CDKL5,chrX:g.18647309C>T,372496,p.Gly70Ser,Juvenile retinoschisis (RS1),Pathogenic,pathogenic
+CDKL5,chrX:g.18628470C>T,156691,p.Q866X,"Developmental and epileptic encephalopathy, 2 (DEE2)",Pathogenic,pathogenic
+CDKL5,chrX:g.18653445C>T,136716,,History of neurodevelopmental disorder,Benign,benign
+CDKL5,chrX:g.18604691C>T,143784,,"Developmental and epileptic encephalopathy, 2 (DEE2)",Benign,benign
+CDKL5,chrX:g.18620084T>A,156079,,CDKL5 disorder,Benign,benign
+CDKL5,chrX:g.18646109A>G,136715,,"Developmental and epileptic encephalopathy, 2 (DEE2)",Benign,benign
+GALT,chr9:g.34647706G>T,25164,,Galactosemia,Pathogenic,pathogenic
+GALT,chr9:g.34647858C>T,3618,p.S26L,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Pathogenic/Likely pathogenic,pathogenic
+GALT,chr9:g.34648766G>A,25247,p.Arg122His,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Pathogenic/Likely pathogenic,pathogenic
+GALT,chr9:g.34648991A>G,649344,,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Pathogenic/Likely pathogenic,pathogenic
+GALT,chr9:g.34647823A>G,795357,,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Likely benign,benign
+GALT,chr9:g.34647473A>G,1564274,,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Likely benign,benign
+GALT,chr9:g.34650395T>G,1549599,,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Likely benign,benign
+GALT,chr9:g.34649483C>G,1550866,,Deficiency of UDPglucose-hexose-1-phosphate uridylyltransferase,Likely benign,benign
+KCNT1,chr9:g.135765706G>A,39593,p.R395Q,"Developmental and epileptic encephalopathy, 14 (DEE14)",Pathogenic,pathogenic
+KCNT1,chr9:g.135765188G>A,39599,p.R359Q,Autosomal dominant nocturnal frontal lobe epilepsy 5,Likely pathogenic,pathogenic
+KCNT1,chr9:g.135779411C>T,39597,p.Arg895Cys,Autosomal dominant nocturnal frontal lobe epilepsy 5,Pathogenic,pathogenic
+KCNT1,chr9:g.135779426C>G,1457519,p.Arg914Gly,"Developmental and epileptic encephalopathy, 14 (DEE14)",Pathogenic,pathogenic
+KCNT1,chr9:g.135771116G>A,682424,,"Developmental and epileptic encephalopathy, 14 (DEE14)",Benign,benign
+KCNT1,chr9:g.135778853A>G,682433,,,Benign,benign
+KCNT1,chr9:g.135751066C>A,682075,,"Developmental and epileptic encephalopathy, 14 (DEE14)",Benign,benign
+KCNT1,chr9:g.135702258C>A,388332,,Autosomal dominant nocturnal frontal lobe epilepsy 5,Benign,benign
+OTC,chrX:g.38369838G>A,11001,p.Glu87Lys,Ornithine carbamoyltransferase deficiency (OTCD),Pathogenic,pathogenic
+OTC,chrX:g.38411906G>T,11008,p.L304F,Ornithine carbamoyltransferase deficiency (OTCD),Pathogenic,pathogenic
+OTC,chrX:g.38401304T>C,97195,p.Leu139Ser,Ornithine carbamoyltransferase deficiency (OTCD),Pathogenic,pathogenic
+OTC,chrX:g.38401421C>T,97237,p.T178M,Ornithine carbamoyltransferase deficiency (OTCD),Pathogenic,pathogenic
+OTC,chrX:g.38409060T>G,256372,,Ornithine carbamoyltransferase deficiency (OTCD),Benign,benign
+OTC,chrX:g.38413132A>G,675568,,Ornithine carbamoyltransferase deficiency (OTCD),Benign,benign
+OTC,chrX:g.38411846A>G,1569445,,Ornithine carbamoyltransferase deficiency (OTCD),Benign,benign
+OTC,chrX:g.38403313A>G,680701,,,Benign,benign
+PAH,chr12:g.102855313C>T,102726,p.V172M,Phenylketonuria (PKU),Pathogenic,pathogenic
+PAH,chr12:g.102852819C>T,580,p.E280K,Phenylketonuria (PKU),Pathogenic,pathogenic
+PAH,chr12:g.102840474T>C,593,p.Tyr409Cys,Hyperphenylalaninemia,Pathogenic,pathogenic
+PAH,chr12:g.102840492C>T,612,p.Arg403Gln,Phenylketonuria (PKU),Pathogenic,pathogenic
+PAH,chr12:g.102877415G>A,102673,,Phenylketonuria (PKU),Benign,benign
+PAH,chr12:g.102852614C>A,1236848,,,Benign,benign
+PAH,chr12:g.102877442C>T,1634636,,Phenylketonuria (PKU),Benign,benign
+PAH,chr12:g.102855635G>A,1243014,,,Benign,benign
+PDHA1,chrX:g.19351369G>A,871395,p.Arg165Gln,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Pathogenic,pathogenic
+PDHA1,chrX:g.19353146C>T,92770,,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Pathogenic,pathogenic
+PDHA1,chrX:g.19358920C>T,10879,p.R340C,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Pathogenic,pathogenic
+PDHA1,chrX:g.19359612C>T,214936,p.Arg378Cys,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Pathogenic,pathogenic
+PDHA1,chrX:g.19359471_19359472dup,1589995,,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Benign,benign
+PDHA1,chrX:g.19355441T>A,2823389,,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Likely benign,benign
+PDHA1,chrX:g.19359457_19359481del,1095690,,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Likely benign,benign
+PDHA1,chrX:g.19344055C>T,1582407,,Pyruvate dehydrogenase E1-alpha deficiency (PDHAD),Likely benign,benign
+POLG,chr15:g.89325520G>A,13499,p.R627W,"Sensory ataxic neuropathy, dysarthria, and ophthalmoparesis (SANDO)",Pathogenic,pathogenic
+POLG,chr15:g.89320883T>C,13495,p.Y955C,"Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal dominant 1 (PEOA1)",Pathogenic,pathogenic
+POLG,chr15:g.89327201C>T,13496,p.A467T,Progressive sclerosing poliodystrophy (MTDPS4A),Pathogenic,pathogenic
+POLG,chr15:g.89327166C>T,280017,,Progressive sclerosing poliodystrophy (MTDPS4A),Pathogenic,pathogenic
+POLG,chr15:g.89316383C>G,1599622,,Fanconi anemia (FA),Benign,benign
+POLG,chr15:g.89333627T>C,129989,p.Gln43Arg,Progressive sclerosing poliodystrophy (MTDPS4A),Benign,benign
+POLG,chr15:g.89323854C>T,381338,,Progressive sclerosing poliodystrophy (MTDPS4A),Likely benign,benign
+POLG,chr15:g.89316419G>A,456221,p.G1256E,Fanconi anemia (FA),Likely benign,benign
+SCN1A,chr2:g.166042334G>A,189886,p.Arg712*,Severe myoclonic epilepsy in infancy (DRVT),Pathogenic,pathogenic
+SCN1A,chr2:g.166054637C>T,197187,,Severe myoclonic epilepsy in infancy (DRVT),Pathogenic,pathogenic
+SCN1A,chr2:g.166052869G>A,68578,p.T226M,Severe myoclonic epilepsy in infancy (DRVT),Pathogenic,pathogenic
+SCN1A,chr2:g.166044010G>A,265254,p.Arg568*,"Migraine, familial hemiplegic, 3",Pathogenic,pathogenic
+SCN1A,chr2:g.166041479_166041480dup,331890,,Familial hemiplegic migraine,Benign,benign
+SCN1A,chr2:g.166041354A>G,36752,,Generalized epilepsy with febrile seizures plus,Benign,benign
+SCN1A,chr2:g.166012265A>G,36754,,Severe myoclonic epilepsy in infancy (DRVT),Benign,benign
+SCN1A,chr2:g.165989506G>A,331862,,"Migraine, familial hemiplegic, 3",Benign,benign
+SLC25A13,chr7:g.96146609G>A,939098,p.Arg468*,Citrin deficiency,Pathogenic,pathogenic
+SLC25A13,chr7:g.96191189G>T,6004,p.Ser225Ter,Citrullinemia type II,Pathogenic,pathogenic
+SLC25A13,chr7:g.96184276C>T,6002,,Neonatal intrahepatic cholestasis due to citrin deficiency (CDNI),Pathogenic,pathogenic
+SLC25A13,chr7:g.96170044C>T,6005,,Citrullinemia type II,Pathogenic,pathogenic
+SLC25A13,chr7:g.96121918G>A,361013,,Citrullinemia type I (CTNL1),Likely benign,benign
+SLC25A13,chr7:g.96189553del,811645,,,Benign,benign
+SLC25A13,chr7:g.96234796T>C,260371,,Citrullinemia type II,Benign,benign
+SLC25A13,chr7:g.96209019A>C,1242839,,,Benign,benign
+SLC2A1,chr1:g.42929242C>T,16113,p.G314S,Childhood onset GLUT1 deficiency syndrome 2,Pathogenic,pathogenic
+SLC2A1,chr1:g.42929918G>A,37300,p.R212C,Dystonia 9 (DYT9),Pathogenic,pathogenic
+SLC2A1,chr1:g.42930661G>A,521908,p.Gln161*,Inborn genetic diseases,Pathogenic,pathogenic
+SLC2A1,chr1:g.42929736G>A,202196,p.Gln242*,Intellectual disability,Pathogenic,pathogenic
+SLC2A1,chr1:g.42929050T>C,139164,,"GLUT1 deficiency syndrome 1, autosomal recessive",Benign,benign
+SLC2A1,chr1:g.42926578A>G,875725,,Dystonia 9 (DYT9),Benign,benign
+SLC2A1,chr1:g.42959041del,297392,,Dystonic disorder,Benign,benign
+SLC2A1,chr1:g.42927574_42927575insAAATGGTGAG,1222935,,,Benign,benign
+STXBP1,chr9:g.127666205C>T,207422,p.Arg235Ter,"Developmental and epileptic encephalopathy, 4 (DEE4)",Pathogenic,pathogenic
+STXBP1,chr9:g.127682489G>T,429757,p.Gly530Val,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Pathogenic,pathogenic
+STXBP1,chr9:g.127658373A>G,488800,,"Developmental and epileptic encephalopathy, 4 (DEE4)",Pathogenic,pathogenic
+STXBP1,chr9:g.127673250C>T,207429,p.Arg353*,Epileptic encephalopathy,Pathogenic,pathogenic
+STXBP1,chr9:g.127678612C>A,673214,,,Benign,benign
+STXBP1,chr9:g.127676649A>C,3635890,p.T405P,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+STXBP1,chr9:g.127682391C>A,378692,,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign
+STXBP1,chr9:g.127673266G>A,2780159,,Early infantile epileptic encephalopathy with suppression bursts (EIEE),Benign,benign

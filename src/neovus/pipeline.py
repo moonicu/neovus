@@ -15,6 +15,7 @@ import re
 from .evidence import Claim, Evidence
 from .report import (CandidateDisease, ChecklistItem, Report, StructuralImpact,
                      VariantInput)
+from .scoring import evidence_direction
 from .sources import alphafold, hpo, myvariant, uniprot
 
 _TOP_DISEASES = 5
@@ -47,6 +48,16 @@ def build_report(variant_id: str, gene: str | None = None,
         return report
     report.variant.hgvs = ann.protein_change
     report.variant_evidence = list(ann.claims)
+
+    # Auditable direction: what the in-silico predictors collectively point to.
+    direction = evidence_direction(ann)
+    if direction.call != "uncertain" and direction.reasons:
+        report.variant_evidence.append(Claim(
+            f"Aggregated in-silico evidence leans {direction.call} "
+            f"({'; '.join(direction.reasons)})").add(Evidence(
+                "NeoVUS (derived)", ann.variant_id,
+                f"https://myvariant.info/v1/variant/{ann.variant_id}",
+                "vote over REVEL / AlphaMissense / CADD / gnomAD", retrieved="derived")))
 
     # Candidate diseases + checklist
     top_disease = None
