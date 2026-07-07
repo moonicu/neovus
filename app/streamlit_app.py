@@ -98,8 +98,13 @@ if go:
         st.error("Enter a variant, e.g. chr20:g.63446815G>A")
     else:
         terms = [t.strip() for t in hpo.split(",") if t.strip()]
-        with st.spinner("Querying ClinVar / MyVariant / HPO / UniProt / AlphaFold…"):
-            report = build_report(variant.strip(), gene=gene.strip() or None, hpo_terms=terms)
-        render(report)
+        try:
+            with st.spinner("Querying ClinVar / MyVariant / HPO / UniProt / AlphaFold…"):
+                report = build_report(variant.strip(), gene=gene.strip() or None, hpo_terms=terms)
+            render(report)
+        except Exception as e:  # never crash the clinician's screen
+            st.error(f"Something went wrong reaching the data sources ({type(e).__name__}). "
+                     "Please try again in a moment — public APIs occasionally rate-limit.")
+            st.caption(f"Detail: {e}")
 else:
     st.info("Enter a variant in the sidebar and press **Interpret**.")

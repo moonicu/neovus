@@ -58,8 +58,12 @@ def resolve(raw: str, gene: str | None = None) -> Resolved:
     try:
         data = get_json(f"{RECODER}/{quote(query, safe=':')}", {"fields": "hgvsg,hgvsp"})
     except Exception as e:
+        # 4xx = the notation/gene isn't recognised; anything else = a transient fetch problem.
+        is_bad_input = "400" in str(e) or "404" in str(e)
+        reason = ("not a recognised variant/gene notation"
+                  if is_bad_input else "the variant service is temporarily unavailable")
         return Resolved(None, query, "ensembl-variant-recoder",
-                        note=f"could not resolve '{query}': {e}")
+                        note=f"Could not resolve '{query}' — {reason}.")
 
     hgvsgs: list[str] = []
     hgvsps: list[str] = []

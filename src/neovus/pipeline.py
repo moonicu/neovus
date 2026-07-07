@@ -37,14 +37,32 @@ def _residue(protein_change: str | None) -> int | None:
     return int(m.group(1)) if m else None
 
 
+def _needs_gene(variant: str) -> bool:
+    """A bare c./p. notation (no gene prefix) can't be placed without a gene."""
+    return bool(re.match(r"^[cp]\.", variant.strip(), re.IGNORECASE)) and ":" not in variant
+
+
 def build_report(variant: str, gene: str | None = None,
                  hpo_terms: list[str] | None = None) -> Report:
+    variant = (variant or "").strip()
+    report = Report(variant=VariantInput(
+        gene=(gene or "?"), genomic=variant, hpo_terms=hpo_terms or []))
+    if not variant:
+        report.warnings.append("No variant entered. Enter e.g. c.629G>A, p.Arg210His, "
+                               "rs796053235, or chr20:g.63444720C>T.")
+        return report
+    if not gene and _needs_gene(variant):
+        report.warnings.append(f"'{variant}' is a bare {variant[:2]} notation — please also "
+                               "enter the gene so it can be placed on the genome.")
+        return report
+
     # Accept what's on the report (rsID / c.HGVS / p.HGVS / genomic) → MyVariant id.
     res = resolve(variant, gene)
-    report = Report(variant=VariantInput(
-        gene=gene or "?", genomic=res.variant_id or variant, hpo_terms=hpo_terms or []))
+    report.variant.genomic = res.variant_id or variant
     if res.variant_id is None:
-        report.warnings.append(res.note or f"Could not resolve variant '{variant}'.")
+        report.warnings.append(
+            (res.note or f"Could not resolve '{variant}'.")
+            + "  Check the gene symbol and notation (e.g. c.629G>A, p.Arg210His, rs#).")
         return report
 
     ann = myvariant.annotate_variant(res.variant_id)
@@ -90,6 +108,10 @@ def build_report(variant: str, gene: str | None = None,
                 name=d.name, source_id=d.id, score=d.match_score, claims=list(d.claims)))
         if diseases:
             top_disease = diseases[0]
+        else:
+            report.warnings.append(
+                f"No gene→disease associations found for '{gene}' in HPO — "
+                "check the gene symbol (HGNC).")
     if top_disease is not None:
         report.checklist = _checklist_from_disease(top_disease)
 
