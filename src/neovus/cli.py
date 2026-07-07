@@ -72,9 +72,16 @@ def main() -> None:
     ap.add_argument("variant", help="MyVariant id, e.g. chr20:g.63446815G>A")
     ap.add_argument("--gene", help="Gene symbol (inferred if omitted)")
     ap.add_argument("--hpo", default="", help="Comma-separated HPO terms")
+    ap.add_argument("--html", metavar="PATH", help="Also write a printable HTML report")
     args = ap.parse_args()
     hpo = [t.strip() for t in args.hpo.split(",") if t.strip()]
-    print(render(build_report(args.variant, gene=args.gene, hpo_terms=hpo)))
+    report = build_report(args.variant, gene=args.gene, hpo_terms=hpo)
+    print(render(report))
+    if args.html:
+        from .htmlreport import report_html
+        with open(args.html, "w") as f:
+            f.write(report_html(report))
+        print(f"\n[written] {args.html}")
 
 
 if __name__ == "__main__":

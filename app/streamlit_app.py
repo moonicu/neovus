@@ -79,6 +79,11 @@ def render(report: Report) -> None:
     st.markdown(f"**Audit:** {n_cite} citations · "
                 + (f"⚠️ {n_bad} unsupported claim(s)" if n_bad else "✅ 0 unsupported claims"))
 
+    from neovus.htmlreport import report_html
+    fname = f"neovus_{report.variant.gene}_{(report.variant.hgvs or 'report')}.html".replace(" ", "")
+    st.download_button("⬇️ Download printable report (HTML → print to PDF)",
+                       data=report_html(report), file_name=fname, mime="text/html")
+
 
 st.title("🧬 NeoVUS-KG")
 st.caption("Transparent, evidence-traceable interpretation of a single neonatal VUS.")
