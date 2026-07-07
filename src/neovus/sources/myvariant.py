@@ -37,6 +37,15 @@ def _clinvar_url(vid: int | None) -> str | None:
     return f"https://www.ncbi.nlm.nih.gov/clinvar/variation/{vid}/" if vid else None
 
 
+def _clinvar_protein(clinvar: dict) -> str | None:
+    """Canonical RefSeq protein change (p.…) from ClinVar's NP_ HGVS."""
+    prot = ((clinvar.get("hgvs") or {}).get("protein"))
+    for p in (prot if isinstance(prot, list) else [prot]) if prot else []:
+        if isinstance(p, str) and ":p." in p:
+            return p.split(":", 1)[1]
+    return None
+
+
 def annotate_variant(variant_id: str, assembly: str = "hg38") -> VariantAnnotation | None:
     """Annotate one variant by MyVariant id (e.g. 'chr20:g.63446815G>A')."""
     try:
@@ -58,6 +67,10 @@ def annotate_variant(variant_id: str, assembly: str = "hg38") -> VariantAnnotati
     elif isinstance(rcv, dict):
         sig = rcv.get("clinical_significance")
 
+    # Prefer the canonical RefSeq (NP_) protein change from ClinVar over the first
+    # dbNSFP isoform, so display and residue→domain mapping use one numbering.
+    protein_change = _clinvar_protein(clinvar) or first(dbnsfp.get("hgvsp"))
+
     cadd = max_num((data.get("cadd") or {}).get("phred")) or max_num((dbnsfp.get("cadd") or {}).get("phred"))
     revel = max_num((dbnsfp.get("revel") or {}).get("score"))
     am_score = max_num(am.get("score"))
@@ -67,7 +80,7 @@ def annotate_variant(variant_id: str, assembly: str = "hg38") -> VariantAnnotati
     ann = VariantAnnotation(
         variant_id=data["_id"],
         gene=first(dbnsfp.get("genename")),
-        protein_change=first(dbnsfp.get("hgvsp")),
+        protein_change=protein_change,
         clinvar_id=clinvar.get("variant_id"),
         clinvar_significance=sig,
         cadd_phred=cadd,
