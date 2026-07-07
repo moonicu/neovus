@@ -140,7 +140,9 @@ def build_report(variant: str, gene: str | None = None,
             structural = StructuralImpact(
                 summary=f"{prot.name or gene} ({prot.accession}); {where}.",
                 domain=(dom.get("description") if dom else None),
-                claims=list(prot.claims))
+                claims=list(prot.claims),
+                accession=prot.accession, length=prot.length,
+                residue=residue, domains=prot.domains)
             if af.claim:
                 structural.claims.append(af.claim)
             report.structural = structural
@@ -152,6 +154,8 @@ def build_report(variant: str, gene: str | None = None,
     # Scannable header facts
     report.headline.clinvar_significance = ann.clinvar_significance
     report.headline.direction = direction.call
+    report.headline.direction_score = direction.score
+    report.headline.direction_reasons = list(direction.reasons)
     report.headline.revel = ann.revel
     report.headline.alphamissense = ann.alphamissense
     report.headline.alphamissense_pred = ann.alphamissense_pred

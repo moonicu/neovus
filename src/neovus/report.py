@@ -39,6 +39,11 @@ class StructuralImpact:
     summary: str
     domain: str | None = None
     claims: list[Claim] = field(default_factory=list)
+    # data for the protein-track visual
+    accession: str | None = None
+    length: int | None = None
+    residue: int | None = None
+    domains: list[dict] = field(default_factory=list)   # {type, description, begin, end}
 
 
 @dataclass
@@ -47,6 +52,8 @@ class Headline:
     badges + metrics instead of one long sentence)."""
     clinvar_significance: str | None = None
     direction: str | None = None            # pathogenic | benign | uncertain
+    direction_score: int = 0                # signed vote total
+    direction_reasons: list[str] = field(default_factory=list)
     revel: float | None = None
     alphamissense: float | None = None
     alphamissense_pred: str | None = None

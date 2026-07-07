@@ -9,9 +9,15 @@ back to its source database (auditability is the whole point).
 from __future__ import annotations
 
 import streamlit as st
+import streamlit.components.v1 as components
 
+from neovus import visuals
 from neovus.pipeline import build_report
 from neovus.report import Report
+
+
+def _svg(markup: str, height: int) -> None:
+    components.html(f'<div style="font-family:sans-serif">{markup}</div>', height=height)
 
 st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide")
 
@@ -62,23 +68,25 @@ def render(report: Report) -> None:
     if banner:
         st.markdown("　·　".join(banner))
 
-    # In-silico metrics row
-    cols = st.columns(4)
-    cols[0].metric("REVEL", f"{h.revel:.2f}" if h.revel is not None else "—",
-                   help="Missense pathogenicity, >0.5 supports pathogenic")
-    cols[1].metric("AlphaMissense",
-                   f"{h.alphamissense:.2f}" + (f" ({h.alphamissense_pred})" if h.alphamissense_pred else "")
-                   if h.alphamissense is not None else "—")
-    cols[2].metric("CADD", f"{h.cadd:.0f}" if h.cadd is not None else "—",
-                   help="Deleteriousness (phred); higher = worse")
-    cols[3].metric("gnomAD AF", f"{h.gnomad_af:.1e}" if h.gnomad_af is not None else "—",
-                   help="Population allele frequency")
+    # Verdict gauge + in-silico threshold bars
+    gcol, scol = st.columns([1, 1])
+    with gcol:
+        _svg(visuals.verdict_gauge_svg(report), height=80)
+        if h.gnomad_af is not None:
+            st.caption(f"gnomAD allele frequency: {h.gnomad_af:.1e}")
+    with scol:
+        bars = visuals.score_bars_svg(report)
+        if bars:
+            _svg(bars, height=108)
 
     if h.top_condition:
         match = f"  ·  phenotype match **{h.top_condition_match:.0%}**" if h.top_condition_match else ""
         st.markdown(f"**Top condition:** {h.top_condition}{match}")
-    if h.structure:
-        st.markdown(f"**Structure:** {h.structure}")
+
+    # Protein-domain lollipop (where the variant lands)
+    track = visuals.protein_track_svg(report)
+    if track:
+        _svg(track, height=120)
 
     st.caption("⚕️ Decision support on open public data — not a diagnosis. "
                "Verify every claim against its linked source before clinical use.")
@@ -121,6 +129,11 @@ def render(report: Report) -> None:
             st.markdown(_claims_md(report.structural.claims))
         else:
             st.markdown("_none_")
+
+    dot = visuals.disease_graph_dot(report)
+    if dot:
+        st.markdown("### 🕸️ Gene → disease → phenotype")
+        st.graphviz_chart(dot, use_container_width=True)
 
     n_cite, n_bad = len(report.all_evidence()), len(report.unsupported_claims())
     st.divider()
