@@ -9,9 +9,6 @@ authors = [{ name = "moonicu" }]
 dependencies = [
     "streamlit>=1.36",
     "requests>=2.32",
-    "pandas>=2.2",
-    "pydantic>=2.7",
-    "python-dotenv>=1.0",
     "pyyaml>=6.0",
 ]
 
