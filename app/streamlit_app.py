@@ -26,7 +26,8 @@ from neovus.report import Report
 def _svg(markup: str, height: int) -> None:
     components.html(f'<div style="font-family:sans-serif">{markup}</div>', height=height)
 
-st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide")
+st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide",
+                   initial_sidebar_state="expanded")
 
 
 def _claims_md(claims) -> str:
