@@ -1,0 +1,42 @@
+# Submission materials (Built with Claude: Life Sciences — Builder track)
+
+Deadline: **Mon Jul 13, 9:00 PM ET = Tue Jul 14, 10:00 AM KST**. Submit via the CV platform:
+3-min demo video + open-source repo + written summary.
+
+## Written summary (≈190 words)
+
+NeoVUS is a point-of-care tool for NICU clinicians who hit a variant of uncertain significance (VUS)
+in a neonatal genomic report. Existing tools either rank variants across a whole exome (Exomiser) or
+serve genetics professionals (VarSome); none give a neonatologist an actionable, auditable
+interpretation of one already-flagged variant. NeoVUS takes the variant as written on the report
+(c./p. HGVS, rsID, or coordinate) and returns: ClinVar significance and in-silico evidence with a
+transparent pathogenic/benign direction vote; gene→disease candidates re-ranked by the baby's
+phenotypes; a neonatal checklist of symptoms plus cited work-up and follow-up actions; and the
+variant mapped onto its protein domain. Every statement links to its source database — the report
+tracks its own citations and flags unsupported claims. Built with Claude Code; the reclassification
+benchmark and clinical checklists were curated with Claude Science (all cited). On ClinVar-reclassified
+neonatal variants, NeoVUS's evidence agrees with the eventual reclassification 84.8% of the time at
+100% pathogenic precision. Open-source (MIT), reproducible, open public data only.
+
+## 3-minute demo video script
+
+- **0:00–0:25 — the gap.** A neonatologist in the NICU gets a report flagging a VUS. Whole-exome
+  rankers and VarSome don't fit the bedside. Name the user.
+- **0:25–1:20 — one variant, as written.** Type `KCNQ2` + `c.629G>A` and the baby's phenotypes
+  (`HP:0001250, HP:0010851, HP:0001252`). Report appears. Point at: verdict gauge (leans pathogenic),
+  in-silico threshold bars, and the **protein lollipop — the variant lands in voltage-sensor S4**.
+- **1:20–2:05 — actionable + auditable.** Candidate diseases re-ranked to KCNQ2 developmental &
+  epileptic encephalopathy (100% phenotype match); neonatal checklist with cited work-up/follow-up;
+  click a ClinVar/GeneReviews link to show the evidence trail; download the printable report.
+- **2:05–2:40 — it's validated, not a black box.** ClinVar-reclassification proxy: 84.8% direction
+  agreement, 100% pathogenic precision. Show `scripts/validate.py` output.
+- **2:40–3:00 — two Claude products.** Claude Code built the tool + validation; Claude Science curated
+  the reclassification benchmark and the 18-gene cited checklists. Open-source, reproducible.
+
+## Submission checklist
+
+- [ ] Push repo public to github.com/moonicu (MIT license present ✓)
+- [ ] Record 3-min demo video (Loom/YouTube)
+- [ ] (bonus) Deploy to Streamlit Community Cloud for a live URL
+- [ ] Paste the written summary
+- [ ] Submit on the CV platform before the deadline
