@@ -162,7 +162,7 @@ def render(report: Report) -> None:
         st.markdown("### 🕸️ Gene → disease → phenotype")
         st.caption("How the interpretation is reasoned: the gene links to its candidate diseases "
                    "(edge = phenotype match); the top-ranked disease links to its key phenotypes.")
-        st.graphviz_chart(dot, use_container_width=False)
+        st.graphviz_chart(dot, use_container_width=True)
 
     n_cite, n_bad = len(report.all_evidence()), len(report.unsupported_claims())
     st.divider()
@@ -177,6 +177,7 @@ def render(report: Report) -> None:
 
 st.title("🧬 NeoVUS")
 st.caption("Transparent, evidence-traceable interpretation of a single neonatal VUS.")
+st.caption("📱 On a phone? Tap **»** (top-left) to open the input panel.")
 
 with st.sidebar:
     st.header("Enter a VUS")
@@ -208,4 +209,5 @@ if go:
                      "Please try again in a moment — public APIs occasionally rate-limit.")
             st.caption(f"Detail: {e}")
 else:
-    st.info("Enter a variant in the sidebar and press **Interpret**.")
+    st.info("👈 Enter a VUS in the input panel, then press **Interpret**.\n\n"
+            "On a phone, tap the **»** arrow at the top-left to open the panel.")

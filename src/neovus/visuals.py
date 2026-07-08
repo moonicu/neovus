@@ -44,7 +44,8 @@ def protein_track_svg(report: Report, width: int = 720) -> str | None:
     span = x1 - x0
     def px(res): return x0 + span * (res / L)
 
-    parts = [f'<svg width="{width}" height="104" viewBox="0 0 {width} 104" '
+    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} 104" '
+             'preserveAspectRatio="xMidYMid meet" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     # baseline track
     parts.append(f'<rect x="{x0}" y="{top}" width="{span}" height="14" rx="7" fill="{_TRACK}"/>')
@@ -108,7 +109,8 @@ def score_bars_svg(report: Report, width: int = 360) -> str | None:
 
     x0, bw, rh = 108, width - 108 - 46, 26
     height = len(rows) * rh + 12
-    parts = [f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
+    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} {height}" '
+             'preserveAspectRatio="xMidYMid meet" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     for i, (name, val, vmax, thr, txt) in enumerate(rows):
         y = 8 + i * rh
@@ -138,7 +140,8 @@ def verdict_gauge_svg(report: Report, width: int = 360) -> str:
     nx = x0 + span * frac
     call = h.direction or "uncertain"
     color = {"pathogenic": _PATHO, "benign": _BENIGN}.get(call, _MUTED)
-    parts = [f'<svg width="{width}" height="62" viewBox="0 0 {width} 62" '
+    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} 62" '
+             'preserveAspectRatio="xMidYMid meet" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     # diverging track: teal → gray → red
     parts.append(f'<defs><linearGradient id="g" x1="0" x2="1">'
