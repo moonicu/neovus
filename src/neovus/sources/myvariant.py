@@ -80,10 +80,14 @@ def annotate_variant(variant_id: str, assembly: str = "hg38") -> VariantAnnotati
     # dbNSFP isoform, so display and residue→domain mapping use one numbering.
     protein_change = _clinvar_protein(clinvar) or first(dbnsfp.get("hgvsp"))
 
-    cadd = max_num((data.get("cadd") or {}).get("phred")) or max_num((dbnsfp.get("cadd") or {}).get("phred"))
+    cadd = max_num((data.get("cadd") or {}).get("phred"))
+    if cadd is None:
+        cadd = max_num((dbnsfp.get("cadd") or {}).get("phred"))
     revel = max_num((dbnsfp.get("revel") or {}).get("score"))
     am_score = max_num(am.get("score"))
-    gnomad_af = _allele_freq(data.get("gnomad_genome")) or _allele_freq(data.get("gnomad_exome"))
+    gnomad_af = _allele_freq(data.get("gnomad_genome"))
+    if gnomad_af is None:
+        gnomad_af = _allele_freq(data.get("gnomad_exome"))
 
     ann = VariantAnnotation(
         variant_id=data["_id"],

@@ -93,6 +93,20 @@ scripts/             reproducible benchmark builder + proxy validation
 tests/               tests
 ```
 
+## Limitations (honest)
+
+- The **direction vote is a transparent heuristic, not ACMG** — an equal-weight vote over
+  REVEL/AlphaMissense/CADD/gnomAD. CADD is defined genome-wide, so for non-missense variants
+  (no REVEL/AlphaMissense) the call leans on CADD alone and is weaker; gnomAD only ever votes
+  toward benign. It summarises public evidence for the clinician to weigh — it does not classify.
+- **Structural mapping** assumes the RefSeq protein numbering matches the UniProt canonical isoform;
+  where isoforms differ, the residue→domain position can be off. Treat the lollipop as context.
+- **Work-up/follow-up checklists** are Claude-Science-curated drafts, every item cited but flagged
+  *clinician-review*; verify before use.
+- Variant resolution favours variants known to **ClinVar/dbSNP**; a truly novel variant falls back to
+  the Ensembl Variant Recoder and may not resolve during an Ensembl outage.
+- Not SpliceAI-aware yet; splicing VUS are under-served.
+
 ## License
 
 MIT.

@@ -66,11 +66,12 @@ def ncbi_gene_id(symbol: str) -> str | None:
         data = get_json(f"{BASE}/network/search/gene", {"q": symbol})
     except Exception:
         return None
-    results = data.get("results") or []
-    for r in results:
-        if r.get("name", "").upper() == symbol.upper():
+    for r in data.get("results") or []:
+        if (r.get("name") or "").upper() == symbol.upper():
             return r.get("id")
-    return results[0].get("id") if results else None
+    # No exact symbol match — do NOT fall back to a fuzzy hit (would bind to the
+    # wrong gene and produce a whole report for it).
+    return None
 
 
 def gene_diseases(symbol: str) -> list[Disease]:
@@ -97,6 +98,8 @@ def disease_phenotypes(disease_id: str) -> tuple[str | None, list[Phenotype]]:
     phenos: list[Phenotype] = []
     for category, items in (data.get("categories") or {}).items():
         for it in items:
+            if not isinstance(it, dict) or not it.get("id"):
+                continue
             meta = it.get("metadata") or {}
             phenos.append(Phenotype(
                 hpo_id=it["id"], name=it.get("name", "?"), category=category,
@@ -113,9 +116,12 @@ def rank_diseases(diseases: list[Disease], hpo_terms: list[str] | None) -> list[
     terms = {t.strip() for t in (hpo_terms or []) if t.strip()}
     for d in diseases:
         if not d.phenotypes:
-            desc, phenos = disease_phenotypes(d.id)
-            d.description = d.description or desc
-            d.phenotypes = phenos
+            try:
+                desc, phenos = disease_phenotypes(d.id)
+                d.description = d.description or desc
+                d.phenotypes = phenos
+            except Exception:
+                continue   # one bad disease shouldn't drop all the others
         if terms:
             overlap = terms & {p.hpo_id for p in d.phenotypes}
             d.match_score = len(overlap) / len(terms)

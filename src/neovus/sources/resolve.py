@@ -84,8 +84,14 @@ def _resolve_myvariant(raw: str, gene: str | None) -> Resolved | None:
     if not hits:
         return None
     hit = hits[0]
-    return Resolved(hit["_id"], raw, "myvariant", protein=_canonical_protein(hit),
-                    note=f"'{raw}' → {hit['_id']} (MyVariant / ClinVar)")
+    note = f"'{raw}' → {hit['_id']} (MyVariant / ClinVar)"
+    # A protein change can map to several distinct nucleotide/genomic variants.
+    # Never silently pick one and pretend it's unique — say so.
+    distinct = {h.get("_id") for h in hits if h.get("_id")}
+    if len(distinct) > 1:
+        note += (f"  ⚠ {len(distinct)} distinct variants match this notation; showing the "
+                 "top-ranked — enter the cDNA (c.) or genomic notation to disambiguate.")
+    return Resolved(hit["_id"], raw, "myvariant", protein=_canonical_protein(hit), note=note)
 
 
 def _resolve_ensembl(raw: str, gene: str | None) -> Resolved | None:

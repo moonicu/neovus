@@ -66,24 +66,33 @@ def build_report(variant: str, gene: str | None = None,
             + "  Check the gene symbol and notation (e.g. c.629G>A, p.Arg210His, rs#).")
         return report
 
+    # Surface a disambiguation warning from the resolver at the top of the report.
+    if res.note and "⚠" in res.note:
+        report.warnings.append(res.note)
+
     ann = myvariant.annotate_variant(res.variant_id)
     gene = gene or (ann.gene if ann else None)
     report.variant.gene = gene or "?"
     if ann is None:
+        # Could be genuinely absent OR a transient outage — don't assert a false negative.
         report.warnings.append(
-            f"'{variant}' resolved to {res.variant_id} but is not in MyVariant.info.")
+            f"Could not retrieve annotation for {res.variant_id} — it may not be in "
+            "MyVariant.info, or the data service is busy. Please try again in a moment.")
         return report
-    # Prefer the canonical (RefSeq NP_) protein change from the recoder over the
-    # first dbNSFP isoform, so display and residue→domain mapping use one numbering.
+    # Prefer the canonical (RefSeq NP_) protein change over the first dbNSFP isoform,
+    # so display and residue→domain mapping use one numbering.
     protein_change = res.protein or ann.protein_change
     report.variant.hgvs = protein_change
 
     # Record the input normalization as its own auditable step.
     if res.method != "genomic" and res.note:
+        _src = {"myvariant": ("MyVariant", "https://myvariant.info"),
+                "ensembl-variant-recoder": ("Ensembl Variant Recoder",
+                                            "https://rest.ensembl.org/variant_recoder")
+                }.get(res.method, ("variant resolver", None))
         report.variant_evidence.append(Claim(res.note).add(Evidence(
-            "Ensembl Variant Recoder", res.source_notation,
-            "https://rest.ensembl.org/variant_recoder", "input normalization (GRCh38)",
-            retrieved="rest:ensembl")))
+            _src[0], res.source_notation, _src[1], "input normalization (GRCh38)",
+            retrieved=f"rest:{res.method}")))
     report.variant_evidence += list(ann.claims)
 
     # Auditable direction: what the in-silico predictors collectively point to.
@@ -117,7 +126,10 @@ def build_report(variant: str, gene: str | None = None,
         report.checklist = _checklist_from_disease(top_disease)
     # Curated work-up / follow-up actions for the gene (symptoms come from HPO above).
     if gene:
-        report.checklist += load_gene_checklist(gene)
+        try:
+            report.checklist += load_gene_checklist(gene)
+        except Exception as e:
+            report.warnings.append(f"Could not load work-up checklist for {gene}: {e}")
 
     # Structural context
     if gene:

@@ -16,3 +16,8 @@ def test_kcnq2_checklist_loads_with_citations():
 
 def test_unknown_gene_returns_empty():
     assert load_gene_checklist("NOTAGENE") == []
+
+
+def test_path_traversal_is_rejected():
+    for bad in ["../../etc/passwd", "../KCNQ2", "KCNQ2/../SCN2A", "a/b", ""]:
+        assert load_gene_checklist(bad) == []
