@@ -188,6 +188,59 @@ def render(report: Report) -> None:
                        data=report_html(report), file_name=fname, mime="text/html")
 
 
+@st.cache_data(show_spinner=False)
+def _cached_report(variant: str, gene: str | None, hpo: tuple):
+    return build_report(variant, gene=gene, hpo_terms=list(hpo))
+
+
+def _freq_weight(freq: str | None) -> int:
+    return {"Obligate": 5, "Very frequent": 4, "Frequent": 3,
+            "Occasional": 2, "Very rare": 1}.get(freq or "", 2)
+
+
+def bedside_phenotype_check(report: Report) -> None:
+    """Tick the phenotypes the patient has; score each candidate disease live."""
+    uni: dict[str, dict] = {}
+    for i, d in enumerate(report.candidate_diseases):
+        for p in d.phenotypes:
+            hid = p.get("hpo_id")
+            if not hid:
+                continue
+            e = uni.setdefault(hid, {"name": p.get("name", "?"), "freq": p.get("frequency"), "dz": set()})
+            e["dz"].add(i)
+    if not uni:
+        return
+
+    st.divider()
+    st.markdown("### ✅ Bedside phenotype check")
+    st.caption("Tick the phenotypes the baby actually has — each candidate disease's match updates below.")
+    items = sorted(uni.items(), key=lambda kv: (len(kv[1]["dz"]), _freq_weight(kv[1]["freq"])),
+                   reverse=True)[:24]
+    checked: set[str] = set()
+    cols = st.columns(2)
+    for j, (hid, e) in enumerate(items):
+        freq = f" · {e['freq']}" if e["freq"] else ""
+        if cols[j % 2].checkbox(f"{e['name']}{freq}", key=f"ph_{hid}"):
+            checked.add(hid)
+
+    st.markdown("**Match by candidate disease** (from ticked phenotypes):")
+    scores = []
+    for d in report.candidate_diseases:
+        phen = d.phenotypes
+        if not phen:
+            continue
+        total_w = sum(_freq_weight(p.get("frequency")) for p in phen)
+        got = [p for p in phen if p.get("hpo_id") in checked]
+        got_w = sum(_freq_weight(p.get("frequency")) for p in got)
+        frac = got_w / total_w if total_w else 0.0
+        scores.append((frac, len(got), len(phen), d.name))
+    for frac, n, tot, name in sorted(scores, reverse=True):
+        st.markdown(f"**{name}** — {n}/{tot} phenotypes · weighted match **{frac:.0%}**")
+        st.progress(min(1.0, frac))
+    st.caption("Frequency-weighted phenotype-match heuristic — not a diagnostic probability. "
+               "A missing phenotype is not evidence against the disease; verify clinically.")
+
+
 st.title("🧬 NeoVUS")
 st.caption("Transparent, evidence-traceable interpretation of a single neonatal VUS.")
 st.caption("📱 On a phone? Tap **»** (top-left) to open the input panel.")
@@ -211,19 +264,24 @@ with st.sidebar:
     st.markdown("💬 **Feedback / questions**  \n"
                 "[neovus.tool@gmail.com](mailto:neovus.tool@gmail.com?subject=NeoVUS%20feedback)")
 
-if go:
-    if not variant.strip():
-        st.error("Enter a variant, e.g. chr20:g.63446815G>A")
-    else:
-        terms = [t.strip() for t in hpo.split(",") if t.strip()]
-        try:
-            with st.spinner("Querying ClinVar / MyVariant / HPO / UniProt / AlphaFold…"):
-                report = build_report(variant.strip(), gene=gene.strip() or None, hpo_terms=terms)
-            render(report)
-        except Exception as e:  # never crash the clinician's screen
-            st.error(f"Something went wrong reaching the data sources ({type(e).__name__}). "
-                     "Please try again in a moment — public APIs occasionally rate-limit.")
-            st.caption(f"Detail: {e}")
+if go and variant.strip():
+    terms = tuple(t.strip() for t in hpo.split(",") if t.strip())
+    st.session_state["inputs"] = (variant.strip(), gene.strip() or None, terms)
+    st.session_state["interpreted"] = True
+elif go and not variant.strip():
+    st.error("Enter a variant, e.g. chr20:g.63446815G>A")
+
+if st.session_state.get("interpreted"):
+    v, g, h = st.session_state["inputs"]
+    try:
+        with st.spinner("Querying ClinVar / MyVariant / HPO / UniProt / AlphaFold…"):
+            report = _cached_report(v, g, h)   # cached → checkbox reruns don't refetch
+        render(report)
+        bedside_phenotype_check(report)
+    except Exception as e:  # never crash the clinician's screen
+        st.error(f"Something went wrong reaching the data sources ({type(e).__name__}). "
+                 "Please try again in a moment — public APIs occasionally rate-limit.")
+        st.caption(f"Detail: {e}")
 else:
     st.info("👈 Enter a VUS in the input panel, then press **Interpret**.\n\n"
             "On a phone, tap the **»** arrow at the top-left to open the panel.")
