@@ -43,9 +43,19 @@ def _needs_gene(variant: str) -> bool:
     return bool(re.match(r"^[cp]\.", variant.strip(), re.IGNORECASE)) and ":" not in variant
 
 
+def _normalize_gene(gene: str | None) -> str | None:
+    """HGNC human symbols are upper-case (e.g. UBA6) — case matters to the APIs.
+    Preserve the 'orf' convention (C9orf72, not C9ORF72)."""
+    if not gene:
+        return None
+    g = re.sub(r"(\d)ORF(\d)", r"\1orf\2", gene.strip().upper())
+    return g or None
+
+
 def build_report(variant: str, gene: str | None = None,
                  hpo_terms: list[str] | None = None) -> Report:
     variant = (variant or "").strip()
+    gene = _normalize_gene(gene)
     report = Report(variant=VariantInput(
         gene=(gene or "?"), genomic=variant, hpo_terms=hpo_terms or []))
     if not variant:
@@ -61,9 +71,9 @@ def build_report(variant: str, gene: str | None = None,
     res = resolve(variant, gene)
     report.variant.genomic = res.variant_id or variant
     if res.variant_id is None:
-        report.warnings.append(
-            (res.note or f"Could not resolve '{variant}'.")
-            + "  Check the gene symbol and notation (e.g. c.629G>A, p.Arg210His, rs#).")
+        report.warnings.append(res.note or (
+            f"Could not resolve '{variant}'. Check the gene symbol and notation "
+            "(e.g. c.629G>A, p.Arg210His, rs#, chr20:g.…)."))
         return report
 
     # Surface a disambiguation warning from the resolver at the top of the report.
