@@ -8,6 +8,13 @@ back to its source database (auditability is the whole point).
 
 from __future__ import annotations
 
+import os
+import sys
+
+# Make the src-layout `neovus` package importable when the app is run directly
+# (e.g. Streamlit Community Cloud), without needing an editable install.
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+
 import streamlit as st
 import streamlit.components.v1 as components
 

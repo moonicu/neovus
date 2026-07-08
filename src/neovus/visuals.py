@@ -28,6 +28,11 @@ def _esc(s) -> str:
     return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
+def _dot(s) -> str:
+    """Escape a Graphviz DOT quoted-string label."""
+    return str(s).replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
+
+
 # --------------------------------------------------------------------------- #
 # 1. Protein-domain lollipop                                                  #
 # --------------------------------------------------------------------------- #
@@ -166,7 +171,7 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 4
         top = (i == 0)
         fill = "#fee2e2" if top else "#f3f4f6"
         name = d.name if len(d.name) <= 34 else d.name[:32] + "…"
-        lines.append(f'"{nid}" [label="{_esc(name)}" shape=box '
+        lines.append(f'"{nid}" [label="{_dot(name)}" shape=box '
                      f'fillcolor="{fill}" color="#e5e7eb"];')
         elabel = f' [label="{d.score:.0%}"]' if d.score else ""
         lines.append(f'"{gene}" -> "{nid}"{elabel};')
@@ -176,7 +181,7 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 4
         pid = f"p{j}"
         label = it.text.split(" [")[0]
         label = label if len(label) <= 26 else label[:24] + "…"
-        lines.append(f'"{pid}" [label="{_esc(label)}" shape=ellipse fillcolor="#eff6ff" color="#dbeafe"];')
+        lines.append(f'"{pid}" [label="{_dot(label)}" shape=ellipse fillcolor="#eff6ff" color="#dbeafe"];')
         lines.append(f'"d0" -> "{pid}";')
     lines.append("}")
     return "\n".join(lines)
