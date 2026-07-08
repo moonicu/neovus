@@ -1,0 +1,34 @@
+gene: PDHA1
+disease: Pyruvate dehydrogenase complex deficiency (PDHA1)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Plasma/CSF lactate and pyruvate with lactate:pyruvate ratio
+  rationale: Lactic acidosis with normal L:P ratio suggests PDC deficiency
+  source: 'GeneReviews: Primary Pyruvate Dehydrogenase Complex Deficiency Overview'
+  source_id: NBK571223
+  url: https://www.ncbi.nlm.nih.gov/books/NBK571223/
+- category: workup
+  text: Confirm with PDH enzyme activity and PDHA1 genotyping
+  rationale: Enzyme + molecular testing confirm the diagnosis
+  source: 'GeneReviews: Primary Pyruvate Dehydrogenase Complex Deficiency Overview'
+  source_id: NBK571223
+  url: https://www.ncbi.nlm.nih.gov/books/NBK571223/
+- category: workup
+  text: Brain MRI for structural/malformation and basal ganglia changes
+  rationale: Neuroimaging supports diagnosis and prognostication
+  source: 'GeneReviews: Primary Pyruvate Dehydrogenase Complex Deficiency Overview'
+  source_id: NBK571223
+  url: https://www.ncbi.nlm.nih.gov/books/NBK571223/
+- category: follow-up
+  text: Consider ketogenic diet and thiamine supplementation
+  rationale: Ketogenic diet bypasses the PDC block; some are thiamine-responsive
+  source: 'GeneReviews: Primary Pyruvate Dehydrogenase Complex Deficiency Overview'
+  source_id: NBK571223
+  url: https://www.ncbi.nlm.nih.gov/books/NBK571223/
+- category: follow-up
+  text: Metabolic and developmental surveillance
+  rationale: Progressive neurologic disease needs ongoing monitoring
+  source: 'GeneReviews: Primary Pyruvate Dehydrogenase Complex Deficiency Overview'
+  source_id: NBK571223
+  url: https://www.ncbi.nlm.nih.gov/books/NBK571223/

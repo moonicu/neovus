@@ -1,0 +1,35 @@
+gene: POLG
+disease: POLG-related disorders (incl. Alpers-Huttenlocher syndrome)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Confirm with POLG molecular genetic testing (biallelic variants)
+  rationale: Molecular confirmation of POLG disease
+  source: 'GeneReviews: POLG-Related Disorders'
+  source_id: NBK26471
+  url: https://www.ncbi.nlm.nih.gov/books/NBK26471/
+- category: workup
+  text: Liver function tests and neurologic/EEG assessment
+  rationale: Hepatocerebral involvement in early-onset Alpers
+  source: 'GeneReviews: POLG-Related Disorders'
+  source_id: NBK26471
+  url: https://www.ncbi.nlm.nih.gov/books/NBK26471/
+- category: follow-up
+  text: AVOID sodium valproate for seizures
+  rationale: Valproate can precipitate fatal hepatotoxicity in POLG disease
+  source: 'GeneReviews: POLG-Related Disorders'
+  source_id: NBK26471
+  url: https://www.ncbi.nlm.nih.gov/books/NBK26471/
+- category: follow-up
+  text: Seizure management with non-valproate ASMs and supportive multidisciplinary
+    care
+  rationale: Refractory epilepsy needs alternatives to valproate
+  source: 'GeneReviews: POLG-Related Disorders'
+  source_id: NBK26471
+  url: https://www.ncbi.nlm.nih.gov/books/NBK26471/
+- category: follow-up
+  text: Serial hepatic surveillance
+  rationale: Progressive liver failure risk
+  source: 'GeneReviews: POLG-Related Disorders'
+  source_id: NBK26471
+  url: https://www.ncbi.nlm.nih.gov/books/NBK26471/

@@ -1,0 +1,34 @@
+gene: KCNQ3
+disease: KCNQ3-related epilepsy / self-limited familial neonatal-infantile seizures
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: EEG (ictal/interictal) to characterise neonatal seizures
+  rationale: Confirms seizure type and helps distinguish self-limited course
+  source: 'GeneReviews: KCNQ3-Related Disorders'
+  source_id: NBK201978
+  url: https://www.ncbi.nlm.nih.gov/books/NBK201978/
+- category: workup
+  text: Neuroimaging (MRI) to exclude structural/acquired causes
+  rationale: Self-limited familial neonatal seizures require exclusion of other etiologies
+  source: 'GeneReviews: KCNQ3-Related Disorders'
+  source_id: NBK201978
+  url: https://www.ncbi.nlm.nih.gov/books/NBK201978/
+- category: workup
+  text: Developmental assessment at baseline
+  rationale: A minority have developmental/epileptic encephalopathy needing follow-up
+  source: 'GeneReviews: KCNQ3-Related Disorders'
+  source_id: NBK201978
+  url: https://www.ncbi.nlm.nih.gov/books/NBK201978/
+- category: follow-up
+  text: Antiseizure medication for active seizures with taper once seizures remit
+  rationale: Self-limited seizures often remit in infancy
+  source: 'GeneReviews: KCNQ3-Related Disorders'
+  source_id: NBK201978
+  url: https://www.ncbi.nlm.nih.gov/books/NBK201978/
+- category: follow-up
+  text: Developmental surveillance for the encephalopathy subset
+  rationale: Neurodevelopmental outcome varies by phenotype
+  source: 'GeneReviews: KCNQ3-Related Disorders'
+  source_id: NBK201978
+  url: https://www.ncbi.nlm.nih.gov/books/NBK201978/

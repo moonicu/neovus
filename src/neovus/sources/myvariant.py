@@ -37,6 +37,15 @@ def _clinvar_url(vid: int | None) -> str | None:
     return f"https://www.ncbi.nlm.nih.gov/clinvar/variation/{vid}/" if vid else None
 
 
+def _allele_freq(block) -> float | None:
+    """Safely pull gnomAD allele frequency from a possibly-None/odd-shaped block."""
+    af = block.get("af") if isinstance(block, dict) else None
+    if isinstance(af, dict):
+        val = af.get("af")
+        return first(val) if isinstance(val, list) else val
+    return None
+
+
 def _clinvar_protein(clinvar: dict) -> str | None:
     """Canonical RefSeq protein change (p.…) from ClinVar's NP_ HGVS."""
     prot = ((clinvar.get("hgvs") or {}).get("protein"))
@@ -74,8 +83,7 @@ def annotate_variant(variant_id: str, assembly: str = "hg38") -> VariantAnnotati
     cadd = max_num((data.get("cadd") or {}).get("phred")) or max_num((dbnsfp.get("cadd") or {}).get("phred"))
     revel = max_num((dbnsfp.get("revel") or {}).get("score"))
     am_score = max_num(am.get("score"))
-    gnomad_af = first((data.get("gnomad_genome") or {}).get("af", {}).get("af")) \
-        or first((data.get("gnomad_exome") or {}).get("af", {}).get("af"))
+    gnomad_af = _allele_freq(data.get("gnomad_genome")) or _allele_freq(data.get("gnomad_exome"))
 
     ann = VariantAnnotation(
         variant_id=data["_id"],

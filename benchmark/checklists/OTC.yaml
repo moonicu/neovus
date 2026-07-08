@@ -1,0 +1,36 @@
+gene: OTC
+disease: Ornithine transcarbamylase deficiency (neonatal-onset)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Urgent plasma ammonia in any encephalopathic neonate
+  rationale: Hyperammonemia is the acute life-threatening feature
+  source: 'GeneReviews: Ornithine Transcarbamylase Deficiency'
+  source_id: NBK154378
+  url: https://www.ncbi.nlm.nih.gov/books/NBK154378/
+- category: workup
+  text: Plasma amino acids, urine orotic acid, and OTC genotyping to confirm
+  rationale: Elevated orotic acid with low citrulline supports OTC; molecular confirms
+  source: 'GeneReviews: Ornithine Transcarbamylase Deficiency'
+  source_id: NBK154378
+  url: https://www.ncbi.nlm.nih.gov/books/NBK154378/
+- category: follow-up
+  text: 'Emergency hyperammonemia management: stop protein, provide calories, nitrogen
+    scavengers, and dialysis if severe'
+  rationale: Rapid ammonia lowering prevents neurologic injury/death
+  source: 'GeneReviews: Ornithine Transcarbamylase Deficiency'
+  source_id: NBK154378
+  url: https://www.ncbi.nlm.nih.gov/books/NBK154378/
+- category: follow-up
+  text: Long-term protein-restricted diet with nitrogen-scavenger therapy and metabolic
+    follow-up
+  rationale: Prevents recurrent hyperammonemic crises
+  source: 'GeneReviews: Ornithine Transcarbamylase Deficiency'
+  source_id: NBK154378
+  url: https://www.ncbi.nlm.nih.gov/books/NBK154378/
+- category: follow-up
+  text: Sick-day protocol and prompt ammonia checks during illness
+  rationale: Catabolism precipitates decompensation
+  source: 'GeneReviews: Ornithine Transcarbamylase Deficiency'
+  source_id: NBK154378
+  url: https://www.ncbi.nlm.nih.gov/books/NBK154378/

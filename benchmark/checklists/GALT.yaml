@@ -1,0 +1,34 @@
+gene: GALT
+disease: Classic galactosemia
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Confirm screen with GALT enzyme activity and galactose-1-phosphate, plus genotyping
+  rationale: Enzyme + metabolite + molecular confirmation
+  source: 'GeneReviews: Classic Galactosemia and Clinical Variant Galactosemia'
+  source_id: NBK1518
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1518/
+- category: workup
+  text: Sepsis evaluation (esp. E. coli) in a symptomatic neonate
+  rationale: Neonatal E. coli sepsis is a recognised early complication
+  source: 'GeneReviews: Classic Galactosemia and Clinical Variant Galactosemia'
+  source_id: NBK1518
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1518/
+- category: follow-up
+  text: Immediate lactose/galactose-restricted (soy-based) formula
+  rationale: Dietary restriction prevents acute toxicity
+  source: 'GeneReviews: Classic Galactosemia and Clinical Variant Galactosemia'
+  source_id: NBK1518
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1518/
+- category: follow-up
+  text: Long-term surveillance of development, speech, and (in females) ovarian function
+  rationale: Long-term complications occur despite diet
+  source: 'GeneReviews: Classic Galactosemia and Clinical Variant Galactosemia'
+  source_id: NBK1518
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1518/
+- category: follow-up
+  text: Monitor for cataracts
+  rationale: Galactose toxicity causes cataract formation
+  source: 'GeneReviews: Classic Galactosemia and Clinical Variant Galactosemia'
+  source_id: NBK1518
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1518/

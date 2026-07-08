@@ -1,0 +1,35 @@
+gene: SLC2A1
+disease: GLUT1 deficiency syndrome
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Lumbar puncture for CSF glucose (and CSF:blood glucose ratio) before feeding/glucose
+  rationale: Hypoglycorrhachia is the biochemical hallmark
+  source: 'GeneReviews: Glucose Transporter Type 1 Deficiency Syndrome'
+  source_id: NBK1430
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1430/
+- category: workup
+  text: Confirm with SLC2A1 molecular genetic testing
+  rationale: Molecular confirmation of GLUT1 DS
+  source: 'GeneReviews: Glucose Transporter Type 1 Deficiency Syndrome'
+  source_id: NBK1430
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1430/
+- category: follow-up
+  text: Initiate ketogenic diet therapy
+  rationale: Ketones provide an alternative brain fuel and control seizures/movement
+    symptoms
+  source: 'GeneReviews: Glucose Transporter Type 1 Deficiency Syndrome'
+  source_id: NBK1430
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1430/
+- category: follow-up
+  text: Avoid substances that impair GLUT1 (e.g. caffeine) and monitor diet efficacy
+  rationale: Certain agents further reduce glucose transport
+  source: 'GeneReviews: Glucose Transporter Type 1 Deficiency Syndrome'
+  source_id: NBK1430
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1430/
+- category: follow-up
+  text: Developmental and seizure/movement-disorder surveillance
+  rationale: Multisystem neurologic follow-up required
+  source: 'GeneReviews: Glucose Transporter Type 1 Deficiency Syndrome'
+  source_id: NBK1430
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1430/

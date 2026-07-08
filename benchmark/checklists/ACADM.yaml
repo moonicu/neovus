@@ -1,0 +1,29 @@
+gene: ACADM
+disease: Medium-chain acyl-CoA dehydrogenase deficiency (MCADD)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Confirm abnormal newborn screen with plasma acylcarnitines and urine organic/acylglycines
+    plus ACADM genotyping
+  rationale: Biochemical + molecular confirmation of the C8-elevation pattern
+  source: 'GeneReviews: Medium-Chain Acyl-Coenzyme A Dehydrogenase Deficiency'
+  source_id: NBK1424
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1424/
+- category: follow-up
+  text: Avoid fasting; enforce age-appropriate maximum fasting intervals
+  rationale: Fasting precipitates hypoketotic hypoglycemia and metabolic crises
+  source: 'GeneReviews: Medium-Chain Acyl-Coenzyme A Dehydrogenase Deficiency'
+  source_id: NBK1424
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1424/
+- category: follow-up
+  text: Emergency ('sick-day') plan with prompt glucose during intercurrent illness
+  rationale: Catabolic stress triggers decompensation
+  source: 'GeneReviews: Medium-Chain Acyl-Coenzyme A Dehydrogenase Deficiency'
+  source_id: NBK1424
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1424/
+- category: follow-up
+  text: Metabolic dietitian follow-up and family education
+  rationale: Long-term prevention hinges on fasting-avoidance adherence
+  source: 'GeneReviews: Medium-Chain Acyl-Coenzyme A Dehydrogenase Deficiency'
+  source_id: NBK1424
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1424/

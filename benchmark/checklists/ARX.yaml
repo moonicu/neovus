@@ -1,0 +1,36 @@
+gene: ARX
+disease: ARX-related disorders (X-linked lissencephaly / early infantile epileptic
+  encephalopathy)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Brain MRI to assess for lissencephaly/agenesis of corpus callosum and the
+    XLAG spectrum
+  rationale: Structural malformation defines the severe end of the ARX spectrum
+  source: 'PubMed: Hum Mutat 2010'
+  source_id: PMID:20506206
+  url: https://pubmed.ncbi.nlm.nih.gov/20506206/
+- category: workup
+  text: EEG for epileptic spasms/encephalopathy characterisation
+  rationale: Early epileptic encephalopathy is a core ARX phenotype
+  source: 'PubMed: Dev Med Child Neurol 2005'
+  source_id: PMID:15707237
+  url: https://pubmed.ncbi.nlm.nih.gov/15707237/
+- category: workup
+  text: Evaluate for ambiguous genitalia in males (XLAG)
+  rationale: Genital anomalies co-occur with X-linked lissencephaly
+  source: 'PubMed: Hum Mutat 2010'
+  source_id: PMID:20506206
+  url: https://pubmed.ncbi.nlm.nih.gov/20506206/
+- category: follow-up
+  text: Seizure management and developmental surveillance across the phenotypic spectrum
+  rationale: Outcome ranges from isolated ID to lethal XLAG
+  source: 'PubMed: Hum Mutat 2010'
+  source_id: PMID:20506206
+  url: https://pubmed.ncbi.nlm.nih.gov/20506206/
+- category: follow-up
+  text: Genetic counseling for X-linked inheritance and carrier females
+  rationale: X-linked transmission with variable female manifestation
+  source: 'PubMed: Dev Med Child Neurol 2005'
+  source_id: PMID:15707237
+  url: https://pubmed.ncbi.nlm.nih.gov/15707237/

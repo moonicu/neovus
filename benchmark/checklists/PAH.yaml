@@ -1,0 +1,29 @@
+gene: PAH
+disease: Phenylketonuria (phenylalanine hydroxylase deficiency)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Confirm elevated phenylalanine and Phe:Tyr ratio; genotype and BH4-responsiveness
+    assessment
+  rationale: Quantifies severity and identifies BH4-responsive genotypes
+  source: 'GeneReviews: Phenylalanine Hydroxylase Deficiency'
+  source_id: NBK1504
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1504/
+- category: follow-up
+  text: Initiate phenylalanine-restricted diet early to target blood Phe range
+  rationale: Early dietary control prevents intellectual disability
+  source: 'GeneReviews: Phenylalanine Hydroxylase Deficiency'
+  source_id: NBK1504
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1504/
+- category: follow-up
+  text: Regular blood phenylalanine monitoring with dietitian oversight
+  rationale: Lifelong Phe control is the cornerstone of management
+  source: 'GeneReviews: Phenylalanine Hydroxylase Deficiency'
+  source_id: NBK1504
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1504/
+- category: follow-up
+  text: Consider sapropterin (BH4) in responsive patients
+  rationale: Improves Phe tolerance in BH4-responsive genotypes
+  source: 'GeneReviews: Phenylalanine Hydroxylase Deficiency'
+  source_id: NBK1504
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1504/

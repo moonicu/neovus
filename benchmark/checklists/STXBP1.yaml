@@ -1,0 +1,28 @@
+gene: STXBP1
+disease: STXBP1 encephalopathy with epilepsy
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: EEG/video-EEG to characterise early-onset epilepsy and encephalopathy
+  rationale: Early epileptic encephalopathy is a core feature
+  source: 'GeneReviews: STXBP1 Encephalopathy with Epilepsy'
+  source_id: NBK396561
+  url: https://www.ncbi.nlm.nih.gov/books/NBK396561/
+- category: workup
+  text: Developmental and movement-disorder baseline assessment
+  rationale: Tremor/ataxia and developmental impairment are common
+  source: 'GeneReviews: STXBP1 Encephalopathy with Epilepsy'
+  source_id: NBK396561
+  url: https://www.ncbi.nlm.nih.gov/books/NBK396561/
+- category: follow-up
+  text: Individualised antiseizure therapy for often drug-resistant epilepsy
+  rationale: Seizure control is frequently difficult
+  source: 'GeneReviews: STXBP1 Encephalopathy with Epilepsy'
+  source_id: NBK396561
+  url: https://www.ncbi.nlm.nih.gov/books/NBK396561/
+- category: follow-up
+  text: Multidisciplinary developmental, movement and behavioural surveillance
+  rationale: Ongoing neurodevelopmental support needs
+  source: 'GeneReviews: STXBP1 Encephalopathy with Epilepsy'
+  source_id: NBK396561
+  url: https://www.ncbi.nlm.nih.gov/books/NBK396561/

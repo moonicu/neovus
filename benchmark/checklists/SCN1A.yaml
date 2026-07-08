@@ -1,0 +1,34 @@
+gene: SCN1A
+disease: SCN1A seizure disorders (Dravet syndrome)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: EEG and detailed seizure characterisation (fever-triggered, prolonged, hemiclonic)
+  rationale: Electroclinical pattern supports Dravet diagnosis
+  source: 'GeneReviews: SCN1A Seizure Disorders'
+  source_id: NBK1318
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1318/
+- category: workup
+  text: Developmental baseline assessment
+  rationale: Developmental slowing emerges in the second year
+  source: 'GeneReviews: SCN1A Seizure Disorders'
+  source_id: NBK1318
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1318/
+- category: follow-up
+  text: AVOID sodium-channel-blocking ASMs (carbamazepine, phenytoin, lamotrigine)
+  rationale: These typically worsen seizures in Dravet
+  source: 'GeneReviews: SCN1A Seizure Disorders'
+  source_id: NBK1318
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1318/
+- category: follow-up
+  text: Use recommended agents (e.g. valproate, clobazam, stiripentol; fenfluramine/cannabidiol)
+  rationale: Preferred regimens for Dravet seizure control
+  source: 'GeneReviews: SCN1A Seizure Disorders'
+  source_id: NBK1318
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1318/
+- category: follow-up
+  text: Aggressive fever/status management and SUDEP counseling
+  rationale: High status epilepticus and SUDEP risk
+  source: 'GeneReviews: SCN1A Seizure Disorders'
+  source_id: NBK1318
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1318/

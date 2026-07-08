@@ -1,0 +1,40 @@
+gene: GAA
+disease: Infantile-onset Pompe disease (glycogen storage disease II)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Confirm with GAA enzyme activity assay plus GAA genotyping
+  rationale: Enzyme + molecular testing confirm diagnosis and residual activity
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/
+- category: workup
+  text: CRIM (cross-reactive immunologic material) status determination
+  rationale: CRIM-negative status predicts immune response to ERT and need for immunomodulation
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/
+- category: workup
+  text: Baseline cardiac evaluation (echocardiogram, ECG)
+  rationale: Infantile Pompe causes hypertrophic cardiomyopathy requiring urgent detection
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/
+- category: follow-up
+  text: Start enzyme replacement therapy (alglucosidase alfa) as early as possible
+  rationale: Early ERT improves cardiac and survival outcomes
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/
+- category: follow-up
+  text: Immune tolerance induction in CRIM-negative infants
+  rationale: Reduces anti-rhGAA antibodies that blunt ERT efficacy
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/
+- category: follow-up
+  text: Serial cardiac, respiratory and motor/feeding surveillance
+  rationale: Multisystem progression needs ongoing monitoring
+  source: 'GeneReviews: Pompe Disease'
+  source_id: NBK1261
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1261/

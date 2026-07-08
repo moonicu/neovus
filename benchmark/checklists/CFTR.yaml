@@ -1,0 +1,43 @@
+gene: CFTR
+disease: Cystic fibrosis
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Sweat chloride test to confirm diagnosis after positive newborn screen
+  rationale: Gold-standard confirmatory test for CF
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/
+- category: workup
+  text: CFTR variant analysis / genotype for modulator eligibility
+  rationale: Genotype guides CFTR-modulator therapy choice
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/
+- category: workup
+  text: Baseline respiratory cultures, pancreatic (fecal elastase) and nutritional
+    assessment
+  rationale: Defines pancreatic sufficiency and airway flora at baseline
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/
+- category: follow-up
+  text: Pancreatic enzyme replacement and fat-soluble vitamin supplementation in pancreatic
+    insufficiency
+  rationale: Prevents malabsorption and failure to thrive
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/
+- category: follow-up
+  text: Regular multidisciplinary CF-center visits with airway clearance and infection
+    surveillance
+  rationale: Structured surveillance improves pulmonary outcomes
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/
+- category: follow-up
+  text: CFTR-modulator therapy when genotype-eligible
+  rationale: Modulators improve CFTR function and clinical outcomes
+  source: 'GeneReviews: Cystic Fibrosis'
+  source_id: NBK1250
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1250/

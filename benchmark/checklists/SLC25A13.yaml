@@ -1,0 +1,29 @@
+gene: SLC25A13
+disease: Citrin deficiency — neonatal intrahepatic cholestasis (NICCD)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: 'Evaluate cholestasis: bilirubin fractions, LFTs, and citrulline/galactose
+    profile'
+  rationale: Defines the NICCD cholestatic phenotype
+  source: 'GeneReviews: Citrin Deficiency'
+  source_id: NBK1181
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1181/
+- category: workup
+  text: Confirm with SLC25A13 genotyping
+  rationale: Molecular confirmation of citrin deficiency
+  source: 'GeneReviews: Citrin Deficiency'
+  source_id: NBK1181
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1181/
+- category: follow-up
+  text: Lactose-free / MCT-enriched formula and fat-soluble vitamin support
+  rationale: Dietary management improves NICCD cholestasis
+  source: 'GeneReviews: Citrin Deficiency'
+  source_id: NBK1181
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1181/
+- category: follow-up
+  text: Monitor growth, liver function, and for later metabolic phenotypes
+  rationale: Risk of later-onset CTLN2 and dietary sensitivities
+  source: 'GeneReviews: Citrin Deficiency'
+  source_id: NBK1181
+  url: https://www.ncbi.nlm.nih.gov/books/NBK1181/

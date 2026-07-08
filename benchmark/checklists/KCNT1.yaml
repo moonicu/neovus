@@ -1,0 +1,36 @@
+gene: KCNT1
+disease: KCNT1-related epilepsy (EIMFS / epilepsy of infancy with migrating focal
+  seizures)
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Video-EEG to document migrating multifocal seizures
+  rationale: Characterises the EIMFS electroclinical pattern
+  source: 'GeneReviews: KCNT1-Related Epilepsy'
+  source_id: NBK525917
+  url: https://www.ncbi.nlm.nih.gov/books/NBK525917/
+- category: workup
+  text: Baseline development and cardiorespiratory evaluation
+  rationale: Severe DEE with systemic comorbidity
+  source: 'GeneReviews: KCNT1-Related Epilepsy'
+  source_id: NBK525917
+  url: https://www.ncbi.nlm.nih.gov/books/NBK525917/
+- category: follow-up
+  text: Trial of antiseizure medications; quinidine has been used as targeted therapy
+    in some cases
+  rationale: KCNT1 gain-of-function rationale for quinidine, with variable response
+  source: 'GeneReviews: KCNT1-Related Epilepsy'
+  source_id: NBK525917
+  url: https://www.ncbi.nlm.nih.gov/books/NBK525917/
+- category: follow-up
+  text: Cardiac (QT) monitoring if quinidine is used
+  rationale: Quinidine can prolong QT
+  source: 'GeneReviews: KCNT1-Related Epilepsy'
+  source_id: NBK525917
+  url: https://www.ncbi.nlm.nih.gov/books/NBK525917/
+- category: follow-up
+  text: Developmental surveillance and multidisciplinary support
+  rationale: Profound developmental impact needs ongoing care
+  source: 'GeneReviews: KCNT1-Related Epilepsy'
+  source_id: NBK525917
+  url: https://www.ncbi.nlm.nih.gov/books/NBK525917/

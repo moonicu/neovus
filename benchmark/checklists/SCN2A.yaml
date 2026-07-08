@@ -1,0 +1,38 @@
+gene: SCN2A
+disease: SCN2A-related developmental and epileptic encephalopathy
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: Determine gain- vs loss-of-function / early- vs late-onset phenotype, ideally
+    with functional or genotype data
+  rationale: GoF early-onset seizures vs LoF later autism/ID predict opposite drug
+    responses
+  source: 'PubMed: Brain 2017'
+  source_id: PMID:28379373
+  url: https://pubmed.ncbi.nlm.nih.gov/28379373/
+- category: workup
+  text: Obtain EEG and characterise seizure type and onset age
+  rationale: Early-infantile onset (<3 mo) clusters with GoF and channel-blocker responsiveness
+  source: 'PubMed: Epilepsia 2019'
+  source_id: PMID:31904126
+  url: https://pubmed.ncbi.nlm.nih.gov/31904126/
+- category: follow-up
+  text: In early-onset (GoF) seizures, prefer sodium-channel blockers (e.g. carbamazepine/phenytoin);
+    avoid them in late-onset (LoF)
+  rationale: Channel-blockers help GoF but can worsen LoF phenotypes
+  source: 'PubMed: Front Mol Neurosci 2022'
+  source_id: PMID:35431799
+  url: https://pubmed.ncbi.nlm.nih.gov/35431799/
+- category: follow-up
+  text: Longitudinal neurodevelopmental surveillance with early intervention/therapies
+  rationale: Most children have ID/ASD needing developmental support regardless of
+    seizures
+  source: 'PubMed: Front Mol Neurosci 2022'
+  source_id: PMID:35431799
+  url: https://pubmed.ncbi.nlm.nih.gov/35431799/
+- category: follow-up
+  text: Monitor seizure control and re-evaluate ASM choice as phenotype evolves
+  rationale: Drug responsiveness shifts with age and functional class
+  source: 'PubMed: Epilepsia 2019'
+  source_id: PMID:31904126
+  url: https://pubmed.ncbi.nlm.nih.gov/31904126/

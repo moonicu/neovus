@@ -1,0 +1,35 @@
+gene: CDKL5
+disease: CDKL5 deficiency disorder
+review_status: draft — clinician review required
+items:
+- category: workup
+  text: EEG and video-EEG to characterise early-onset (often first months) epilepsy
+  rationale: Early refractory seizures are a defining feature
+  source: 'GeneReviews: CDKL5 Deficiency Disorder'
+  source_id: NBK602610
+  url: https://www.ncbi.nlm.nih.gov/books/NBK602610/
+- category: workup
+  text: Baseline vision assessment including cortical visual impairment screen
+  rationale: CVI is common and affects development/intervention
+  source: 'GeneReviews: CDKL5 Deficiency Disorder'
+  source_id: NBK602610
+  url: https://www.ncbi.nlm.nih.gov/books/NBK602610/
+- category: workup
+  text: Developmental, feeding and tone/movement baseline evaluation
+  rationale: Defines multisystem support needs
+  source: 'GeneReviews: CDKL5 Deficiency Disorder'
+  source_id: NBK602610
+  url: https://www.ncbi.nlm.nih.gov/books/NBK602610/
+- category: follow-up
+  text: Individualised antiseizure regimen for refractory epilepsy
+  rationale: Seizures are typically drug-resistant and need tailored therapy
+  source: 'GeneReviews: CDKL5 Deficiency Disorder'
+  source_id: NBK602610
+  url: https://www.ncbi.nlm.nih.gov/books/NBK602610/
+- category: follow-up
+  text: 'Multidisciplinary surveillance: development, vision, feeding/GI, scoliosis,
+    bone health'
+  rationale: Recommended periodic surveillance across systems
+  source: 'GeneReviews: CDKL5 Deficiency Disorder'
+  source_id: NBK602610
+  url: https://www.ncbi.nlm.nih.gov/books/NBK602610/
