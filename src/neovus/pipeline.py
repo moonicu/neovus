@@ -114,8 +114,12 @@ def build_report(variant: str, gene: str | None = None,
             diseases = []
             report.warnings.append(f"HPO gene→disease lookup failed for {gene}: {e}")
         for d in diseases[:_TOP_DISEASES]:
+            phenos = [{"hpo_id": p.hpo_id, "name": p.name, "frequency": p.frequency}
+                      for p in sorted(d.phenotypes, key=lambda p: p.freq_rank, reverse=True)
+                      if (p.category or "") not in _NON_CLINICAL_CATEGORIES][:10]
             report.candidate_diseases.append(CandidateDisease(
-                name=d.name, source_id=d.id, score=d.match_score, claims=list(d.claims)))
+                name=d.name, source_id=d.id, score=d.match_score,
+                claims=list(d.claims), phenotypes=phenos))
         if diseases:
             top_disease = diseases[0]
         else:

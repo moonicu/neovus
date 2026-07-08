@@ -25,6 +25,7 @@ class CandidateDisease:
     source_id: str                # ORPHA/OMIM/MONDO id
     score: float | None = None    # ranking score (provenance in `claims`)
     claims: list[Claim] = field(default_factory=list)
+    phenotypes: list[dict] = field(default_factory=list)   # {hpo_id, name, frequency}
 
 
 @dataclass

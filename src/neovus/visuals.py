@@ -158,8 +158,9 @@ def verdict_gauge_svg(report: Report, width: int = 360) -> str:
 # --------------------------------------------------------------------------- #
 # 4. Gene → disease → phenotype graph (Graphviz DOT)                          #
 # --------------------------------------------------------------------------- #
-def _wrap(text: str, width: int = 18, max_lines: int = 3) -> str:
-    """Word-wrap a label into Graphviz \\n-separated lines (avoids clipping)."""
+def _wrap(text: str, width: int = 20) -> str:
+    """Word-wrap a label into Graphviz \\n-separated lines — never truncates,
+    so long disease names show in full (the graph just gets a bit taller)."""
     words, lines, cur = text.split(), [], ""
     for w in words:
         if cur and len(cur) + 1 + len(w) > width:
@@ -168,9 +169,6 @@ def _wrap(text: str, width: int = 18, max_lines: int = 3) -> str:
             cur = f"{cur} {w}".strip()
     if cur:
         lines.append(cur)
-    if len(lines) > max_lines:
-        lines = lines[:max_lines]
-        lines[-1] = lines[-1][:width - 1] + "…"
     return "\\n".join(_dot(ln) for ln in lines)
 
 
@@ -200,7 +198,7 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 5
     for j, it in enumerate(symptoms):
         pid = f"p{j}"
         label = it.text.split(" [")[0]
-        lines.append(f'"{pid}" [label="{_wrap(label, 16, 2)}" shape=ellipse '
+        lines.append(f'"{pid}" [label="{_wrap(label, 16)}" shape=ellipse '
                      f'fillcolor="#eff6ff" color="#dbeafe" fontsize=10];')
         lines.append(f'"d0" -> "{pid}" [color="#c7d2fe"];')
     lines.append("}")

@@ -86,6 +86,19 @@ def render(report: Report) -> None:
         if bars:
             _svg(bars, height=108)
 
+    with st.expander("ℹ️ What do these scores mean?"):
+        st.markdown(
+            "- **REVEL** (0–1): ensemble **missense** pathogenicity score combining 13 predictors. "
+            "**> 0.5** leans pathogenic, **> 0.7** stronger. Missense variants only.\n"
+            "- **AlphaMissense** (0–1): DeepMind's missense predictor. Class **P** = likely pathogenic, "
+            "**B** = likely benign, **A** = ambiguous (**> 0.564** → likely pathogenic). Missense only.\n"
+            "- **CADD** (phred): **genome-wide** deleteriousness — works for any variant type. "
+            "**≥ 20** = among the top 1% most deleterious, **≥ 30** = top 0.1%.\n"
+            "- **gnomAD AF**: population **allele frequency**. Very rare (**< 0.0001**) is consistent "
+            "with a severe neonatal-onset disease; common variants are usually benign.\n\n"
+            "_These are computational predictors, not proof. NeoVUS shows them side-by-side with their "
+            "thresholds so you can weigh the evidence — it does not compute an ACMG classification._")
+
     if h.top_condition:
         match = f"  ·  phenotype match **{h.top_condition_match:.0%}**" if h.top_condition_match else ""
         st.markdown(f"**Top condition:** {h.top_condition}{match}")
@@ -114,6 +127,12 @@ def render(report: Report) -> None:
             score = f" · match **{d.score:.0%}**" if d.score else ""
             with st.expander(f"{i}. {d.name}  ({d.source_id}){score}", expanded=(i == 1)):
                 st.markdown(_claims_md(d.claims))
+                if d.phenotypes:
+                    st.markdown("**Associated phenotypes** (HPO, by frequency):")
+                    for p in d.phenotypes:
+                        freq = f" · _{p['frequency']}_" if p.get("frequency") else ""
+                        st.markdown(f"- [{p['name']}](https://hpo.jax.org/browse/term/{p['hpo_id']})"
+                                    f" `{p['hpo_id']}`{freq}")
 
     with c2:
         st.markdown("### ✅ Neonatal checklist")
