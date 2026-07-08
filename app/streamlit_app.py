@@ -171,12 +171,11 @@ def render(report: Report) -> None:
         else:
             st.markdown("_none_")
 
-    dot = visuals.disease_graph_dot(report)
-    if dot:
+    diagram = visuals.interactive_disease_html(report)
+    if diagram:
         st.markdown("### 🕸️ Gene → disease → phenotype")
-        st.caption("How the interpretation is reasoned: the gene links to its candidate diseases "
-                   "(edge = phenotype match); the top-ranked disease links to its key phenotypes.")
-        st.graphviz_chart(dot, use_container_width=True)
+        html, h = diagram
+        components.html(html, height=h, scrolling=True)
 
     n_cite, n_bad = len(report.all_evidence()), len(report.unsupported_claims())
     st.divider()

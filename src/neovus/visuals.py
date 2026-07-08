@@ -172,21 +172,89 @@ def _wrap(text: str, width: int = 20) -> str:
     return "\\n".join(_dot(ln) for ln in lines)
 
 
-def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 3) -> str | None:
+def interactive_disease_html(report: Report, max_diseases: int = 6) -> tuple[str, int] | None:
+    """Self-contained interactive diagram (no external libs): gene → candidate
+    diseases as nodes; click a disease to expand its phenotypes as linked chips
+    (accordion — one open at a time). Returns (html, iframe_height)."""
+    diseases = report.candidate_diseases[:max_diseases]
+    if not diseases:
+        return None
+    gene = _esc(report.variant.gene)
+
+    rows = []
+    max_ph = 0
+    for i, d in enumerate(diseases):
+        top = (i == 0)
+        badge = f'<span class="badge">match {d.score:.0%}</span>' if d.score else ""
+        chips = []
+        for p in (d.phenotypes or []):
+            freq = f' <em>{_esc(p["frequency"])}</em>' if p.get("frequency") else ""
+            url = f'https://hpo.jax.org/browse/term/{_esc(p.get("hpo_id",""))}'
+            chips.append(f'<a class="chip" href="{url}" target="_blank" rel="noopener">'
+                         f'{_esc(p.get("name","?"))}{freq}</a>')
+        max_ph = max(max_ph, len(chips))
+        openattr = " open" if top else ""
+        cls = "node top" if top else "node"
+        rows.append(
+            f'<details{openattr}><summary class="{cls}">'
+            f'<span class="tw">▸</span> <b>{_esc(d.name)}</b> '
+            f'<span class="src">{_esc(d.source_id)}</span> {badge}</summary>'
+            f'<div class="phenos">{"".join(chips) or "<i>no phenotypes listed</i>"}</div>'
+            f'</details>')
+
+    html = f"""
+<style>
+ .wrap {{ font-family:-apple-system,Segoe UI,Roboto,sans-serif; color:#1f2937; padding:4px 2px; }}
+ .gene {{ display:inline-block; background:#1f2937; color:#fff; font-weight:700;
+          padding:6px 14px; border-radius:8px; margin:2px 0 6px; }}
+ .gene em {{ font-weight:400; opacity:.7; font-style:normal; font-size:.8em; }}
+ .tree {{ border-left:2px solid #e5e7eb; margin-left:14px; padding-left:14px; }}
+ details {{ margin:6px 0; }}
+ summary {{ list-style:none; cursor:pointer; border:1px solid #e5e7eb; border-radius:8px;
+            padding:8px 10px; background:#f9fafb; user-select:none; }}
+ summary::-webkit-details-marker {{ display:none; }}
+ summary.top {{ background:#fee2e2; border-color:#fecaca; }}
+ .tw {{ color:#9ca3af; display:inline-block; transition:transform .15s; }}
+ details[open] .tw {{ transform:rotate(90deg); }}
+ .src {{ color:#6b7280; font-size:.8em; }}
+ .badge {{ background:#eef2ff; color:#3730a3; border-radius:10px; padding:1px 8px; font-size:.78em; }}
+ .phenos {{ display:flex; flex-wrap:wrap; gap:6px; padding:8px 4px 2px 18px; }}
+ .chip {{ background:#eff6ff; border:1px solid #dbeafe; color:#1e3a8a; text-decoration:none;
+          border-radius:14px; padding:3px 10px; font-size:.85em; }}
+ .chip em {{ color:#6b7280; font-style:normal; font-size:.85em; }}
+ .hint {{ color:#6b7280; font-size:.82em; margin:2px 0 8px 2px; }}
+</style>
+<div class="wrap">
+  <div class="gene">{gene} <em>gene</em></div>
+  <div class="hint">▸ Tap a disease to see its phenotypes (opens HPO on click).</div>
+  <div class="tree">{"".join(rows)}</div>
+</div>
+<script>
+ const ds = document.querySelectorAll('details');
+ ds.forEach(d => d.addEventListener('toggle', () => {{
+   if (d.open) ds.forEach(o => {{ if (o !== d) o.open = false; }});
+ }}));
+</script>
+"""
+    height = 92 + len(diseases) * 52 + max_ph * 20 + 30
+    return html, min(height, 720)
+
+
+def disease_graph_dot(report: Report, max_diseases: int = 5) -> str | None:
+    """A simple overview: gene → candidate diseases (edge = phenotype match).
+    Per-disease phenotypes are shown by expanding each disease in the UI list,
+    keeping this graph clean (and readable on mobile)."""
     if not report.candidate_diseases:
         return None
     gene = report.variant.gene
     lines = [
         'digraph G {',
-        'rankdir=LR; bgcolor="transparent"; pad=0.2; nodesep=0.28; ranksep=0.75;',
-        'node [fontname="Helvetica" fontsize=11 style="filled,rounded" shape=box '
-        'margin="0.14,0.08"];',
+        'rankdir=LR; bgcolor="transparent"; pad=0.2; nodesep=0.25; ranksep=0.6;',
+        'node [fontname="Helvetica" fontsize=12 style="filled,rounded" shape=box '
+        'margin="0.16,0.09"];',
         'edge [color="#9ca3af" fontname="Helvetica" fontsize=10];',
         f'"{gene}" [label="{_dot(gene)}\\n(gene)" fillcolor="#1f2937" fontcolor="white"];',
     ]
-    # Phenotype nodes are shared across diseases (deduped by HPO id) so the graph
-    # shows which phenotypes link which candidate diseases — the knowledge-graph view.
-    pheno_nodes: dict[str, str] = {}
     for i, d in enumerate(report.candidate_diseases[:max_diseases]):
         nid, top = f"d{i}", (i == 0)
         fill = "#fee2e2" if top else "#f3f4f6"
@@ -195,15 +263,5 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 3
         elabel = f'label="match {d.score:.0%}" fontcolor="#dc2626"' if d.score else 'label=""'
         pen = "penwidth=2" if top else "penwidth=1"
         lines.append(f'"{gene}" -> "{nid}" [{elabel} color="{edge_color}" {pen}];')
-        for p in (d.phenotypes or [])[:max_phenos]:
-            hid = p.get("hpo_id")
-            if not hid:
-                continue
-            if hid not in pheno_nodes:
-                pid = f"p{len(pheno_nodes)}"
-                pheno_nodes[hid] = pid
-                lines.append(f'"{pid}" [label="{_wrap(p.get("name", "?"), 16)}" shape=ellipse '
-                             f'fillcolor="#eff6ff" color="#dbeafe" fontsize=10];')
-            lines.append(f'"{nid}" -> "{pheno_nodes[hid]}" [color="#c7d2fe"];')
     lines.append("}")
     return "\n".join(lines)
