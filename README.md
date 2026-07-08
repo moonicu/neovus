@@ -11,6 +11,8 @@ database** so the clinician can verify rather than trust a black box.
 > Built for **Built with Claude: Life Sciences** (Jul 7–13, 2026), Builder track. Open public data only.
 > Not a medical device — decision support only (see `DISCLAIMER.md`).
 
+**▶ Try it live: https://neovus.streamlit.app**   ·   💬 Feedback: **neovus.tool@gmail.com**
+
 ## Why
 
 A neonatologist in the NICU who hits a VUS has no neonatal-specific, point-of-care tool to interpret

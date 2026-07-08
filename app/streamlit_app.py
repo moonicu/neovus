@@ -194,6 +194,9 @@ with st.sidebar:
     st.code("KCNQ2   c.629G>A        (p.Arg210His)\n"
             "KCNQ2   p.Arg201Cys\n"
             "SCN2A   c.2558G>A", language=None)
+    st.markdown("---")
+    st.markdown("💬 **Feedback / questions**  \n"
+                "[neovus.tool@gmail.com](mailto:neovus.tool@gmail.com?subject=NeoVUS%20feedback)")
 
 if go:
     if not variant.strip():
@@ -211,3 +214,9 @@ if go:
 else:
     st.info("👈 Enter a VUS in the input panel, then press **Interpret**.\n\n"
             "On a phone, tap the **»** arrow at the top-left to open the panel.")
+
+st.divider()
+st.caption(
+    "NeoVUS · open source: [github.com/moonicu/neovus](https://github.com/moonicu/neovus) · "
+    "💬 Feedback: [neovus.tool@gmail.com](mailto:neovus.tool@gmail.com?subject=NeoVUS%20feedback) · "
+    "Open public data — not a diagnosis, not a medical device.")
