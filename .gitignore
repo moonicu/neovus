@@ -34,3 +34,6 @@ reports/
 .idea/
 .vscode/
 *.swp
+
+# Private research notes — keep local, not in the public repo
+docs/RESEARCH_ROADMAP.md
