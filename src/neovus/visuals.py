@@ -158,30 +158,50 @@ def verdict_gauge_svg(report: Report, width: int = 360) -> str:
 # --------------------------------------------------------------------------- #
 # 4. Gene → disease → phenotype graph (Graphviz DOT)                          #
 # --------------------------------------------------------------------------- #
-def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 4) -> str | None:
+def _wrap(text: str, width: int = 18, max_lines: int = 3) -> str:
+    """Word-wrap a label into Graphviz \\n-separated lines (avoids clipping)."""
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        if cur and len(cur) + 1 + len(w) > width:
+            lines.append(cur); cur = w
+        else:
+            cur = f"{cur} {w}".strip()
+    if cur:
+        lines.append(cur)
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+        lines[-1] = lines[-1][:width - 1] + "…"
+    return "\\n".join(_dot(ln) for ln in lines)
+
+
+def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 5) -> str | None:
     if not report.candidate_diseases:
         return None
     gene = report.variant.gene
-    lines = ['digraph G {', 'rankdir=LR;', 'bgcolor="transparent";',
-             'node [fontname="Helvetica" fontsize=11 style=filled];',
-             'edge [color="#9ca3af" fontname="Helvetica" fontsize=9];',
-             f'"{gene}" [shape=box fillcolor="#1f2937" fontcolor="white"];']
+    lines = [
+        'digraph G {',
+        'rankdir=LR; bgcolor="transparent"; pad=0.2; nodesep=0.28; ranksep=0.75;',
+        'node [fontname="Helvetica" fontsize=11 style="filled,rounded" shape=box '
+        'margin="0.14,0.08"];',
+        'edge [color="#9ca3af" fontname="Helvetica" fontsize=10];',
+        f'"{gene}" [label="{_dot(gene)}\\n(gene)" fillcolor="#1f2937" fontcolor="white"];',
+    ]
     for i, d in enumerate(report.candidate_diseases[:max_diseases]):
-        nid = f"d{i}"
-        top = (i == 0)
+        nid, top = f"d{i}", (i == 0)
         fill = "#fee2e2" if top else "#f3f4f6"
-        name = d.name if len(d.name) <= 34 else d.name[:32] + "…"
-        lines.append(f'"{nid}" [label="{_dot(name)}" shape=box '
-                     f'fillcolor="{fill}" color="#e5e7eb"];')
-        elabel = f' [label="{d.score:.0%}"]' if d.score else ""
-        lines.append(f'"{gene}" -> "{nid}"{elabel};')
-    # phenotypes of the top disease (from checklist symptom items)
+        edge_color = "#dc2626" if top else "#9ca3af"
+        lines.append(f'"{nid}" [label="{_wrap(d.name)}" fillcolor="{fill}" color="#e5e7eb"];')
+        elabel = f'label="match {d.score:.0%}" fontcolor="#dc2626"' if d.score else 'label=""'
+        pen = "penwidth=2" if top else "penwidth=1"
+        lines.append(f'"{gene}" -> "{nid}" [{elabel} color="{edge_color}" {pen}];')
+
+    # key phenotypes of the TOP disease (ellipses), so the traversal reads clearly
     symptoms = [it for it in report.checklist if it.category == "symptom"][:max_phenos]
     for j, it in enumerate(symptoms):
         pid = f"p{j}"
         label = it.text.split(" [")[0]
-        label = label if len(label) <= 26 else label[:24] + "…"
-        lines.append(f'"{pid}" [label="{_dot(label)}" shape=ellipse fillcolor="#eff6ff" color="#dbeafe"];')
-        lines.append(f'"d0" -> "{pid}";')
+        lines.append(f'"{pid}" [label="{_wrap(label, 16, 2)}" shape=ellipse '
+                     f'fillcolor="#eff6ff" color="#dbeafe" fontsize=10];')
+        lines.append(f'"d0" -> "{pid}" [color="#c7d2fe"];')
     lines.append("}")
     return "\n".join(lines)

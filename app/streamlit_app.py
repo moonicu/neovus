@@ -140,7 +140,9 @@ def render(report: Report) -> None:
     dot = visuals.disease_graph_dot(report)
     if dot:
         st.markdown("### 🕸️ Gene → disease → phenotype")
-        st.graphviz_chart(dot, use_container_width=True)
+        st.caption("How the interpretation is reasoned: the gene links to its candidate diseases "
+                   "(edge = phenotype match); the top-ranked disease links to its key phenotypes.")
+        st.graphviz_chart(dot, use_container_width=False)
 
     n_cite, n_bad = len(report.all_evidence()), len(report.unsupported_claims())
     st.divider()
