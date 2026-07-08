@@ -8,6 +8,7 @@ back to its source database (auditability is the whole point).
 
 from __future__ import annotations
 
+import base64
 import os
 import sys
 
@@ -23,8 +24,12 @@ from neovus.pipeline import build_report
 from neovus.report import Report
 
 
-def _svg(markup: str, height: int) -> None:
-    components.html(f'<div style="font-family:sans-serif">{markup}</div>', height=height)
+def _svg(markup: str, height: int | None = None) -> None:
+    # Render inline as a data-URI image (in the parent doc, not a components
+    # iframe) so it scales to the column width — no right-edge clipping on mobile.
+    b64 = base64.b64encode(markup.encode("utf-8")).decode("ascii")
+    st.markdown(f'<img src="data:image/svg+xml;base64,{b64}" '
+                'style="width:100%;height:auto;display:block"/>', unsafe_allow_html=True)
 
 st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide",
                    initial_sidebar_state="expanded")
@@ -79,14 +84,11 @@ def render(report: Report) -> None:
     for w in report.warnings:
         st.warning(w)
 
-    # Classification banner
-    banner = []
+    # Classification banner (two short lines so it never overflows on mobile)
     if h.clinvar_significance:
-        banner.append(f"**ClinVar:** :{_sig_color(h.clinvar_significance)}[{h.clinvar_significance}]")
+        st.markdown(f"**ClinVar:** :{_sig_color(h.clinvar_significance)}[{h.clinvar_significance}]")
     if h.direction:
-        banner.append(f"**Evidence leans:** :{_dir_color(h.direction)}[{h.direction}]")
-    if banner:
-        st.markdown("　·　".join(banner))
+        st.markdown(f"**Evidence leans:** :{_dir_color(h.direction)}[{h.direction}]")
 
     # Verdict gauge + in-silico threshold bars
     gcol, scol = st.columns([1, 1])

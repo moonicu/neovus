@@ -44,8 +44,7 @@ def protein_track_svg(report: Report, width: int = 720) -> str | None:
     span = x1 - x0
     def px(res): return x0 + span * (res / L)
 
-    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} 104" '
-             'preserveAspectRatio="xMidYMid meet" '
+    parts = [f'<svg width="{width}" height="104" viewBox="0 0 {width} 104" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     # baseline track
     parts.append(f'<rect x="{x0}" y="{top}" width="{span}" height="14" rx="7" fill="{_TRACK}"/>')
@@ -109,8 +108,7 @@ def score_bars_svg(report: Report, width: int = 360) -> str | None:
 
     x0, bw, rh = 108, width - 108 - 46, 26
     height = len(rows) * rh + 12
-    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} {height}" '
-             'preserveAspectRatio="xMidYMid meet" '
+    parts = [f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     for i, (name, val, vmax, thr, txt) in enumerate(rows):
         y = 8 + i * rh
@@ -140,8 +138,7 @@ def verdict_gauge_svg(report: Report, width: int = 360) -> str:
     nx = x0 + span * frac
     call = h.direction or "uncertain"
     color = {"pathogenic": _PATHO, "benign": _BENIGN}.get(call, _MUTED)
-    parts = [f'<svg width="100%" height="100%" viewBox="0 0 {width} 62" '
-             'preserveAspectRatio="xMidYMid meet" '
+    parts = [f'<svg width="{width}" height="62" viewBox="0 0 {width} 62" '
              'xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">']
     # diverging track: teal → gray → red
     parts.append(f'<defs><linearGradient id="g" x1="0" x2="1">'
@@ -175,7 +172,7 @@ def _wrap(text: str, width: int = 20) -> str:
     return "\\n".join(_dot(ln) for ln in lines)
 
 
-def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 5) -> str | None:
+def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 3) -> str | None:
     if not report.candidate_diseases:
         return None
     gene = report.variant.gene
@@ -187,6 +184,9 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 5
         'edge [color="#9ca3af" fontname="Helvetica" fontsize=10];',
         f'"{gene}" [label="{_dot(gene)}\\n(gene)" fillcolor="#1f2937" fontcolor="white"];',
     ]
+    # Phenotype nodes are shared across diseases (deduped by HPO id) so the graph
+    # shows which phenotypes link which candidate diseases — the knowledge-graph view.
+    pheno_nodes: dict[str, str] = {}
     for i, d in enumerate(report.candidate_diseases[:max_diseases]):
         nid, top = f"d{i}", (i == 0)
         fill = "#fee2e2" if top else "#f3f4f6"
@@ -195,14 +195,15 @@ def disease_graph_dot(report: Report, max_diseases: int = 4, max_phenos: int = 5
         elabel = f'label="match {d.score:.0%}" fontcolor="#dc2626"' if d.score else 'label=""'
         pen = "penwidth=2" if top else "penwidth=1"
         lines.append(f'"{gene}" -> "{nid}" [{elabel} color="{edge_color}" {pen}];')
-
-    # key phenotypes of the TOP disease (ellipses), so the traversal reads clearly
-    symptoms = [it for it in report.checklist if it.category == "symptom"][:max_phenos]
-    for j, it in enumerate(symptoms):
-        pid = f"p{j}"
-        label = it.text.split(" [")[0]
-        lines.append(f'"{pid}" [label="{_wrap(label, 16)}" shape=ellipse '
-                     f'fillcolor="#eff6ff" color="#dbeafe" fontsize=10];')
-        lines.append(f'"d0" -> "{pid}" [color="#c7d2fe"];')
+        for p in (d.phenotypes or [])[:max_phenos]:
+            hid = p.get("hpo_id")
+            if not hid:
+                continue
+            if hid not in pheno_nodes:
+                pid = f"p{len(pheno_nodes)}"
+                pheno_nodes[hid] = pid
+                lines.append(f'"{pid}" [label="{_wrap(p.get("name", "?"), 16)}" shape=ellipse '
+                             f'fillcolor="#eff6ff" color="#dbeafe" fontsize=10];')
+            lines.append(f'"{nid}" -> "{pheno_nodes[hid]}" [color="#c7d2fe"];')
     lines.append("}")
     return "\n".join(lines)
