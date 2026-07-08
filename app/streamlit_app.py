@@ -29,6 +29,18 @@ def _svg(markup: str, height: int) -> None:
 st.set_page_config(page_title="NeoVUS", page_icon="🧬", layout="wide",
                    initial_sidebar_state="expanded")
 
+# Keep everything within the viewport on narrow (mobile) screens — no right-edge clipping.
+st.markdown("""
+<style>
+[data-testid="stAppViewContainer"], .main, .block-container { overflow-x: hidden !important; }
+.block-container { padding-left: 1rem !important; padding-right: 1rem !important; max-width: 100%; }
+svg, iframe { max-width: 100% !important; }
+[data-testid="stImage"] img { max-width: 100% !important; height: auto; }
+pre, code { white-space: pre-wrap !important; word-break: break-word !important; }
+[data-testid="stExpander"] summary p, [data-testid="stMarkdownContainer"] p { overflow-wrap: anywhere; }
+</style>
+""", unsafe_allow_html=True)
+
 
 def _claims_md(claims) -> str:
     lines = []
