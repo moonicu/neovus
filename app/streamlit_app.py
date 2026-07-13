@@ -248,18 +248,18 @@ st.caption("📱 On a phone? Tap **»** (top-left) to open the input panel.")
 with st.sidebar:
     st.header("Enter a VUS")
     gene = st.text_input("Gene", value="KCNQ2")
-    variant = st.text_input("Variant (as written on the report)", value="c.629G>A",
+    variant = st.text_input("Variant (as written on the report)", value="c.715G>A",
                             help="rsID, cDNA (c.), protein (p.), or genomic — "
-                                 "e.g. c.629G>A, p.Arg210His, rs796053235, chr20:g.63444720C>T")
+                                 "e.g. c.715G>A, p.Gly239Ser, rs796053235, chr20:g.63442507C>T")
     hpo = st.text_input("HPO phenotype terms (optional, comma-separated)",
                         placeholder="HP:0001250, HP:0010851",
                         help="Supplying the baby's phenotypes re-ranks candidate diseases by match.")
     go = st.button("Interpret", type="primary", use_container_width=True)
     st.markdown("---")
-    st.caption("Examples (gene · variant)")
-    st.code("KCNQ2   c.629G>A        (p.Arg210His)\n"
-            "KCNQ2   p.Arg201Cys\n"
-            "SCN2A   c.2558G>A", language=None)
+    st.caption("Examples (gene · variant · VUS)")
+    st.code("KCNQ2   c.715G>A     (p.Gly239Ser — a VUS)\n"
+            "KCNQ2   p.Ala317Val  (a VUS)\n"
+            "SCN2A   p.Arg853Gln", language=None)
     st.markdown("---")
     st.markdown("💬 **Feedback / questions**  \n"
                 "[neovus.tool@gmail.com](mailto:neovus.tool@gmail.com?subject=NeoVUS%20feedback)")

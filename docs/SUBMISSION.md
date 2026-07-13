@@ -22,9 +22,10 @@ neonatal variants, NeoVUS's evidence agrees with the eventual reclassification 8
 
 - **0:00–0:25 — the gap.** A neonatologist in the NICU gets a report flagging a VUS. Whole-exome
   rankers and VarSome don't fit the bedside. Name the user.
-- **0:25–1:20 — one variant, as written.** Type `KCNQ2` + `c.629G>A` and the baby's phenotypes
-  (`HP:0001250, HP:0010851, HP:0001252`). Report appears. Point at: verdict gauge (leans pathogenic),
-  in-silico threshold bars, and the **protein lollipop — the variant lands in voltage-sensor S4**.
+- **0:25–1:20 — one variant, as written.** Type `KCNQ2` + `c.715G>A` (a genuine **VUS** — ClinVar:
+  uncertain) and the baby's phenotypes (`HP:0001250, HP:0010851, HP:0001252`). Report appears. Point
+  at: verdict gauge (**leans pathogenic despite the VUS call**), in-silico threshold bars, and the
+  **protein lollipop — the variant lands in the S5 transmembrane segment**.
 - **1:20–2:05 — actionable + auditable.** Candidate diseases re-ranked to KCNQ2 developmental &
   epileptic encephalopathy (100% phenotype match); neonatal checklist with cited work-up/follow-up;
   click a ClinVar/GeneReviews link to show the evidence trail; download the printable report.
