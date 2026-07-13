@@ -34,10 +34,22 @@ neonatal variants, NeoVUS's evidence agrees with the eventual reclassification 8
 - **2:40–3:00 — two Claude products.** Claude Code built the tool + validation; Claude Science curated
   the reclassification benchmark and the 18-gene cited checklists. Open-source, reproducible.
 
+## Optional — mention the v2 upgrade (in the video close or as a note)
+
+An upgraded **v2** is already in development: it keeps v1's transparency but reasons on the
+**ACMG/AMP point framework** — calibrated evidence strengths (REVEL at ClinGen/Pejaver
+thresholds), a provisional point-based classification, **PVS1-lite** (gnomAD gene constraint),
+**PS1/PM5/PM1** from ClinVar, and clinician-supplied **family/functional evidence (de novo,
+segregation, …) that re-classifies live**. Live: `https://neovus2.streamlit.app`.
+One line for the summary if space allows: *"A calibrated, ACMG-aware v2 (provisional
+point-based classification + live family-evidence input) is already in development."*
+
 ## Submission checklist
 
-- [ ] Push repo public to github.com/moonicu (MIT license present ✓)
-- [ ] Record 3-min demo video (Loom/YouTube)
-- [ ] (bonus) Deploy to Streamlit Community Cloud for a live URL
-- [ ] Paste the written summary
-- [ ] Submit on the CV platform before the deadline
+- [x] Push repo public to github.com/moonicu (MIT ✓) — **PUBLIC: github.com/moonicu/neovus**
+- [x] (bonus) Deploy to Streamlit Community Cloud — **live: https://neovus.streamlit.app**
+- [x] (bonus) v2 upgrade deployed — **live: https://neovus2.streamlit.app** (confirm public/incognito)
+- [ ] Record 3-min demo video (script above) → YouTube **Unlisted**
+- [ ] Paste the written summary (≈190 words, above)
+- [ ] Add both live URLs + repo link
+- [ ] Submit on the CV platform before the deadline (Jul 14, 10:00 AM KST)
